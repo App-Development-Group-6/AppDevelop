@@ -1,27 +1,26 @@
 const express = require('express')
-const { insertObject } = require('./databaseHandler')
+const { insertObject, getAllUser } = require('./databaseHandler')
 const router = express.Router()
 
-router.get('/',(req,res)=>{
-    res.render('adminIndex')
+router.get('/', async (req,res)=>{
+    const allUser = await getAllUser();
+    res.render('adminIndex',{data:allUser})
 })
-
 router.get('/addUser',(req,res)=>{
     res.render('addUser')
 })
-//Submit add User
-router.post('/addUser',(req,res)=>{
+router.post('/addUser',async (req,res)=>{
     const name = req.body.txtName
-    const role = req.body.Role
-    const pass= req.body.txtPassword
+    const role = req.body.txtRole
+    const pass = req.body.txtPassword
     const objectToInsert = {
         userName: name,
-        role:role,
+        role: role,
         password: pass
     }
-    insertObject("Users",objectToInsert)
-    res.render('adminIndex')
+    insertObject("Users", objectToInsert)
+    const allUser = await getAllUser();
+    res.render('adminIndex',{data:allUser})
+
 })
-
-
 module.exports = router;

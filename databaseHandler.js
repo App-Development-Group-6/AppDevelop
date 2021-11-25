@@ -1,7 +1,7 @@
 const {MongoClient,ObjectId} = require('mongodb');
 
-const URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test';
-const DATABASE_NAME = "myDatabase"
+const URL = 'mongodb://localhost:27017';
+const DATABASE_NAME = "AppDev"
 
 async function getDB() {
     const client = await MongoClient.connect(URL);
@@ -14,5 +14,14 @@ async function insertObject(collectionName,objectToInsert){
     const newObject = await dbo.collection(collectionName).insertOne(objectToInsert);
     console.log("Gia tri id moi duoc insert la: ", newObject.insertedId.toHexString());
 }
-
-module.exports = {insertObject}
+async function getAllUser() {
+    const dbo = await getDB();
+    const allUser = await dbo.collection("Users").find({}).toArray();
+    return allUser;
+}
+async function getAllTrainer() {
+    const dbo = await getDB();
+    const allTrainer = await dbo.collection("Trainers").find({}).toArray();
+    return allTrainer;
+}
+module.exports = {insertObject, getAllUser,getAllTrainer}

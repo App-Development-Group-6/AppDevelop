@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainer Page</title>
 </head>
+
 <body>
-    <h1>Trainer index</h1>
+    <center>
+        <h1> Welcome to Trainer page </h1>
+        <table border="1">
+            <tr>
+                <th>User Name</th>
+                <th>Role</th>
+                <th>Password</th>
+            </tr>
+            {{#each data}}
+            <tr>
+                <td>{{userName}}</td>
+                <td>{{role}}</td>
+                <td>{{password}} </td>
+            </tr>
+            {{/each}}
+        </table>
+    </center>
 </body>
+
 </html>

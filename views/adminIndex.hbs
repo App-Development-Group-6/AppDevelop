@@ -13,5 +13,19 @@
         <li>Add Trainer</li>
         <li>Add Trainee</li>
     </ul>
+    <table border="1">
+    <tr>
+        <th>User Name</th>
+        <th>Role</th>
+        <th>Password</th>
+    </tr>
+    {{#each data}}
+    <tr>
+        <td>{{userName}}</td>
+        <td>{{role}}</td>
+        <td>{{password}} </td>
+    </tr>
+    {{/each}}
+    </table>
 </body>
 </html>
