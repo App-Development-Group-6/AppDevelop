@@ -24,4 +24,15 @@ async function getAllTrainer() {
     const allTrainer = await dbo.collection("Trainers").find({}).toArray();
     return allTrainer;
 }
-module.exports = {insertObject, getAllUser,getAllTrainer}
+async function getAllTrainee() {
+    const dbo = await getDB();
+    const allTrainee = await dbo.collection("Trainees").find({}).toArray();
+    return allTrainee;
+}
+async function getAllCourse() {
+    const dbo = await getDB();
+    const allcourse = await dbo.collection("Courses").find({}).toArray();
+    return allcourse;
+}
+
+module.exports = {insertObject, getAllUser,getAllTrainer,getAllTrainee, getAllCourse}
