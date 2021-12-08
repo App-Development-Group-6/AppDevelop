@@ -5,25 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Page</title>
+    <title>Trainer's information</title>
 </head>
 
 <body>
     <center>
-        <h1> Welcome to Staff page </h1>
-        <ul>
-            <li><a href="/staff/addTrainer">Add Trainer</a></li>
-            <li><a href="/staff/addTrainee">Add Trainee</a></li>
-        </ul>
+        <h1>Trainer's infomation</h1>
         <table border="1">
             <tr>
-                <th>Course's Name</th>
-                <th>Time</th>
+                <th>Trainer's Name</th>
+                <th>Age</th>
             </tr>
             {{#each data}}
             <tr>
-                <td>{{courseName}}</td>
-                <td>{{time}}</td>
+                <td>{{trainerName}}</td>
+                <td>{{age}}</td>
             </tr>
             {{/each}}
         </table>
