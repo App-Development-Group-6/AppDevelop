@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllUser, insertObject, getAllCourse, deleteCourse } = require('./databaseHandler')
+const { getAllUser, insertObject, getAllCourse, deleteCourse, getCourseById, updateCourse } = require('./databaseHandler')
 const router = express.Router()
 
 router.get('/', async (req,res)=>{
@@ -40,4 +40,21 @@ router.get('/deleteCourse',async (req,res)=>{
     res.redirect('/trainer/course')
 })
 
+router.get('/editCourse', async(req,res)=>{
+    const idInput = req.query.id;
+    await getCourseById(idInput)
+    res.redirect('/trainer/updateCourse')
+})
+
+router.post('/updateCourse', async (req,res)=>{
+    const cid = req.body.txtId
+    const name = req.body.txtCourseName
+    const mount = req.body.txtMount
+    await updateCourse(cid, name, mount)
+    res.redirect('/trainer/course')
+})
+
+router.get('/updateCourse',(req,res)=>{
+    res.render('updateCourse')
+})
 module.exports = router;

@@ -16,13 +16,13 @@ async function insertObject(collectionName,objectToInsert){
 }
 async function getAllUser() {
     const dbo = await getDB();
-    const allUser = await dbo.collection("Users").find({}).toArray();
-    return allUser;
+    const user = await dbo.collection("Users").find({}).toArray();
+    return user;
 }
 async function getAllCourse() {
     const dbo = await getDB();
-    const allcourse = await dbo.collection("Courses").find({}).toArray();
-    return allcourse;
+    const course = await dbo.collection("Courses").find({}).toArray();
+    return course;
 }
 
 async function deleteCourse(idInput) {
@@ -30,4 +30,14 @@ async function deleteCourse(idInput) {
     await dbo.collection("Courses").deleteOne({ _id: ObjectId(idInput) });
 }
 
-module.exports = {insertObject, getAllUser, getAllCourse, deleteCourse}
+async function getCourseById(idInput){
+    const dbo = await getDB();
+    await dbo.collection("Courses").findOne({_id:ObjectId(idInput)});
+}
+
+async function updateCourse(idInput, cid, nip, mip){
+    const dbo = await getDB();
+    await dbo.collection("Courses").updateOne({_id:ObjectId(idInput)},{$set:{courseId:cid, courseNae:nip, mount:mip}});
+}
+
+module.exports = {insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}
