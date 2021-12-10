@@ -37,7 +37,7 @@ async function getCourseById(idInput){
 
 async function updateCourse(idInput, cid, nip, mip){
     const dbo = await getDB();
-    await dbo.collection("Courses").updateOne({_id:ObjectId(idInput)},{$set:{courseId:cid, courseNae:nip, mount:mip}});
+    await dbo.collection("Courses").updateOne({_id:ObjectId(idInput)},{$set:{courseId:cid, courseName:nip, mount:mip}});
 }
 
 module.exports = {insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}

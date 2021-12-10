@@ -42,19 +42,17 @@ router.get('/deleteCourse',async (req,res)=>{
 
 router.get('/editCourse', async(req,res)=>{
     const idInput = req.query.id;
-    await getCourseById(idInput)
-    res.redirect('/trainer/updateCourse')
+    const findcourse = await getCourseById(idInput)
+    res.render('editC',{course:findcourse})
 })
 
 router.post('/updateCourse', async (req,res)=>{
-    const cid = req.body.txtId
-    const name = req.body.txtCourseName
-    const mount = req.body.txtMount
-    await updateCourse(cid, name, mount)
+    const id = req.body.id;
+    const cid = req.body.txtId;
+    const name = req.body.txtCourseName;
+    const mounts = req.body.txtMount;
+    await updateCourse(id, cid, name, mounts)
     res.redirect('/trainer/course')
 })
 
-router.get('/updateCourse',(req,res)=>{
-    res.render('updateCourse')
-})
 module.exports = router;

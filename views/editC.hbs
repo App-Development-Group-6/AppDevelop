@@ -12,12 +12,14 @@
     <center>
         <div>
             <form action="updateCourse" method="post" border="1">
-                Course's ID: <input type="text" name="txtId" id="">
+                <input type="hidden" name="id" value="{{course._id}}">
+                Course's ID: <input type="text" name="txtId" value="{{course.courseId}}" id="">
                 <br><br>
-                Course's Name: <input type="text" name="txtCourseName" id="">
+                Course's Name: <input type="text" name="txtCourseName" value="{{course.courseName}}" id="">
                 <br><br>
                 Mount of Trainess:
-                <input type="text" name="txtMount">
+                <input type="text" name="txtMount" value="{{course.mount}}">
+                <br>
                 <input type="submit" value="Update Course">
             </form>
         </div>
