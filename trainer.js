@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllUser, insertObject, getAllCourse } = require('./databaseHandler')
+const { getAllUser, insertObject, getAllCourse, deleteCourse } = require('./databaseHandler')
 const router = express.Router()
 
 router.get('/', async (req,res)=>{
@@ -34,6 +34,10 @@ router.get('/course',async (req,res)=>{
     res.render('course',{courseinfo:allcourse})
 })
 
-
+router.get('/deleteCourse',async (req,res)=>{
+    const idInput = req.query.id;
+    await deleteCourse(idInput)
+    res.redirect('/trainer/course')
+})
 
 module.exports = router;

@@ -25,4 +25,9 @@ async function getAllCourse() {
     return allcourse;
 }
 
-module.exports = {insertObject, getAllUser, getAllCourse}
+async function deleteCourse(idInput) {
+    const dbo = await getDB();
+    await dbo.collection("Courses").deleteOne({ _id: ObjectId(idInput) });
+}
+
+module.exports = {insertObject, getAllUser, getAllCourse, deleteCourse}
