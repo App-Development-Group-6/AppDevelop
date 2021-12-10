@@ -1,5 +1,5 @@
 const express = require('express')
-const { insertObject, getAllUser } = require('./databaseHandler')
+const { getAllUser } = require('./databaseHandler')
 const router = express.Router()
 
 router.get('/', async (req,res)=>{
