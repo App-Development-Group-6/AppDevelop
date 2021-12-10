@@ -9,7 +9,24 @@
 <body>
     <center>
         <div>
-            
+            <a href="/trainer/addCourse"> Add new Course</a>
+            <hr>
+        </div>
+        <div>
+            <table border="1" style="text-align: center;">
+                <tr>
+                    <th>Course's ID</th>
+                    <th>Name of Course</th>
+                    <th>Mount of Trainees</th>
+                </tr>
+                {{#each courseinfo}}
+                <tr>
+                    <td>{{courseId}}</td>
+                    <td>{{courseName}}</td>
+                    <td>{{mount}}</td>           
+                </tr>
+                {{/each}}
+            </table>
         </div>
     </center>
 </body>
