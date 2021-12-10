@@ -29,8 +29,9 @@ router.post('/addCourse', async (req,res)=>{
     res.render('course',{courseinfo:allcourse})
 })
 
-router.get('/course',(req,res)=>{
-    res.render('course')
+router.get('/course',async (req,res)=>{
+    const allcourse = await getAllCourse();
+    res.render('course',{courseinfo:allcourse})
 })
 
 

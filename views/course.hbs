@@ -22,7 +22,10 @@
                 {{#each courseinfo}}
                 <tr>
                     <td>{{courseId}}</td>
-                    <td>{{courseName}}</td>
+                    <td>{{courseName}}
+                        <a href="/editCourse">Edit</a>
+                        <a href="/deleteCourse">Delete</a>
+                    </td>
                     <td>{{mount}}</td>           
                 </tr>
                 {{/each}}
