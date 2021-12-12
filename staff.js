@@ -54,4 +54,7 @@ router.post('/addCourse',async (req,res)=>{
     res.render('staffIndex',{data:allCourse})
 
 })
+router.post('/searchCourse',async(req,res)=>{
+    const nameInput = req.body.txtName;
+})
 module.exports = router;
