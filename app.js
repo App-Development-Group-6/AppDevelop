@@ -9,6 +9,7 @@ app.get('/',(req,res)=>{
     res.render('index')
 })
 
+
 const adminController = require('./admin')
 app.use('/admin',adminController)
 

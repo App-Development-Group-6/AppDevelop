@@ -10,21 +10,22 @@
 
 <body>
     <center>
-        <h1> Welcome to Trainer page </h1>
-        <table border="1">
-            <tr>
-                <th>User Name</th>
-                <th>Role</th>
-                <th>Password</th>
-            </tr>
-            {{#each data}}
-            <tr>
-                <td>{{userName}}</td>
-                <td>{{role}}</td>
-                <td>{{password}} </td>
-            </tr>
-            {{/each}}
-        </table>
+        <div class="menu">
+            <ul>
+                <li><a href="/trainer">Home</a></li>
+                <li><a href="/trainer/course">Course</a></li>
+                <li><a href="/trainer/about"></a>About</li>
+                <li><a href="/trainer/contact"></a>Contact</li>
+                <li><a href="/trainer/trainerprofile">Profile</a></li>
+            </ul>
+        </div>
+        <div>
+            {{#each data }}
+            <h1> Hello {{role}} - {{userName}} </h1>
+            <p>Welcome to FPT companny!!! <br><br> Have a good day!!!</p>
+           {{/each}}
+        </div>
+
     </center>
 </body>
 

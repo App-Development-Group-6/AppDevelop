@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coure Page</title>
+</head>
+<body>
+    <center>
+        <div>
+            <a href="/trainer/addCourse"> Add new Course</a>
+            <hr>
+        </div>
+        <div>
+            <table border="1" style="text-align: center;">
+                <tr>
+                    <th>Course's ID</th>
+                    <th>Name of Course</th>
+                    <th>Mount of Trainees</th>
+                </tr>
+                {{#each courseinfo}}
+                <tr>
+                    <td>{{courseId}}</td>
+                    <td>{{courseName}}
+                        <a href="/trainer/editCourse?id={{_id}}">Edit</a>
+                        <a href="/trainer/deleteCourse?id={{_id}}">Delete</a>
+                    </td>
+                    <td>{{mount}}</td>           
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </center>
+</body>
+</html>

@@ -16,23 +16,28 @@ async function insertObject(collectionName,objectToInsert){
 }
 async function getAllUser() {
     const dbo = await getDB();
-    const allUser = await dbo.collection("Users").find({}).toArray();
-    return allUser;
-}
-async function getAllTrainer() {
-    const dbo = await getDB();
-    const allTrainer = await dbo.collection("Trainers").find({}).toArray();
-    return allTrainer;
-}
-async function getAllTrainee() {
-    const dbo = await getDB();
-    const allTrainee = await dbo.collection("Trainees").find({}).toArray();
-    return allTrainee;
+    const user = await dbo.collection("Users").find({}).toArray();
+    return user;
 }
 async function getAllCourse() {
     const dbo = await getDB();
-    const allcourse = await dbo.collection("Courses").find({}).toArray();
-    return allcourse;
+    const course = await dbo.collection("Courses").find({}).toArray();
+    return course;
 }
 
-module.exports = {insertObject, getAllUser,getAllTrainer,getAllTrainee, getAllCourse}
+async function deleteCourse(idInput) {
+    const dbo = await getDB();
+    await dbo.collection("Courses").deleteOne({ _id: ObjectId(idInput) });
+}
+
+async function getCourseById(idInput){
+    const dbo = await getDB();
+    await dbo.collection("Courses").findOne({_id:ObjectId(idInput)});
+}
+
+async function updateCourse(idInput, cid, nip, mip){
+    const dbo = await getDB();
+    await dbo.collection("Courses").updateOne({_id:ObjectId(idInput)},{$set:{courseId:cid, courseName:nip, mount:mip}});
+}
+
+module.exports = {insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}
