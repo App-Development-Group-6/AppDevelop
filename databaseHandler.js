@@ -9,16 +9,29 @@ async function getDB() {
     return dbo;
 }
 
+async function checkUserRole(nameI,passI){
+    const dbo = await getDB();
+    const user= await dbo.collection("Users").findOne({userName:nameI,password:passI});
+    if (user==null) {
+        return "-1"
+    }else{
+        console.log(user)
+        return user.role;
+    }
+}
+
 async function insertObject(collectionName,objectToInsert){
     const dbo = await getDB();
     const newObject = await dbo.collection(collectionName).insertOne(objectToInsert);
     console.log("Gia tri id moi duoc insert la: ", newObject.insertedId.toHexString());
 }
+
 async function getAllUser() {
     const dbo = await getDB();
     const user = await dbo.collection("Users").find({}).toArray();
     return user;
 }
+
 async function getAllCourse() {
     const dbo = await getDB();
     const course = await dbo.collection("Courses").find({}).toArray();
@@ -40,4 +53,4 @@ async function updateCourse(idInput, cid, nip, mip){
     await dbo.collection("Courses").updateOne({_id:ObjectId(idInput)},{$set:{courseId:cid, courseName:nip, mount:mip}});
 }
 
-module.exports = {insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}
+module.exports = {checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}
