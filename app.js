@@ -15,6 +15,11 @@ app.get('/',requiresLogin, (req, res) => {
     res.render('index',{userInfo:user})
 })
 
+app.get('/trainerIndex',requiresLogin, (req, res) => {
+    const user = req.session["User"]
+    res.render('trainerIndex',{userInfo:user})
+})
+
 app.post('/login', async (req, res) => {
     const name = req.body.txtName
     const pass = req.body.txtPass
@@ -27,7 +32,13 @@ app.post('/login', async (req, res) => {
             role: role
         }
         console.log("Ban dang dang nhap voi quyen la: " + role)
-        res.redirect('/')
+        if (role == 'Admin'){
+            res.redirect('/')
+        }else if( role == 'Trainer'){
+            res.redirect('/trainerIndex')
+        // }else {
+        //     res.render('staffIndex')
+        }
     }
 })
 

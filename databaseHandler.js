@@ -40,17 +40,18 @@ async function getAllCourse() {
 
 async function deleteCourse(idInput) {
     const dbo = await getDB();
-    await dbo.collection("Courses").deleteOne({ _id: ObjectId(idInput) });
+    await dbo.collection("Courses").deleteOne({ "_id": ObjectId(idInput) });
 }
 
 async function getCourseById(idInput){
     const dbo = await getDB();
-    await dbo.collection("Courses").findOne({_id:ObjectId(idInput)});
+    const course = await dbo.collection("Courses").findOne({"_id":ObjectId(idInput)});
+    return course;
 }
 
 async function updateCourse(idInput, cid, nip, mip){
     const dbo = await getDB();
-    await dbo.collection("Courses").updateOne({_id:ObjectId(idInput)},{$set:{courseId:cid, courseName:nip, mount:mip}});
+    await dbo.collection("Courses").updateOne({"_id":ObjectId(idInput)},{$set:{courseId:cid, courseName:nip, mount:mip}});
 }
 
 module.exports = {checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}
