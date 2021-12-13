@@ -45,7 +45,8 @@ async function deleteCourse(idInput) {
 
 async function getCourseById(idInput){
     const dbo = await getDB();
-    await dbo.collection("Courses").findOne({"_id":ObjectId(idInput)});
+    const course = await dbo.collection("Courses").findOne({"_id":ObjectId(idInput)});
+    return course;
 }
 
 async function updateCourse(idInput, cid, nip, mip){

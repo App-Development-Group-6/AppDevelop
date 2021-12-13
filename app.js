@@ -27,7 +27,14 @@ app.post('/login', async (req, res) => {
             role: role
         }
         console.log("Ban dang dang nhap voi quyen la: " + role)
-        res.redirect('/')
+        if (role == 'Admin'){
+            res.redirect('/')
+        }else if( role == 'Trainer'){
+            res.render('trainerIndex')
+        }else {
+            res.render('staffIndex')
+        }
+        
     }
 })
 
