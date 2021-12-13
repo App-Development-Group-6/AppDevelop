@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole } = require('./databaseHandler')
+const { checkUserRole, userInfo } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -9,14 +9,19 @@ app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
+app.use(express.static('public'))
 
-app.get('/',requiresLogin, (req, res) => {
+app.get('/', requiresLogin, (req, res) => {
     const user = req.session["User"]
-    res.render('index',{userInfo:user})
+    res.render('index', { userInfo: user })
 })
 
-app.get('/trainerIndex',requiresLogin, (req, res) => {
-    const user = req.session["User"]
+app.get('/trainerIndex', requiresLogin, async (req, res) => {
+
+    // const user = req.session["User"]
+    // res.render('trainerIndex', { userInfo: user })
+
+    const user = await userInfo();
     res.render('trainerIndex',{userInfo:user})
 })
 
@@ -28,20 +33,24 @@ app.post('/login', async (req, res) => {
         res.render('login')
     } else {
         req.session["User"] = {
-            name: name,
+            userName: name,
             role: role
         }
         console.log("Ban dang dang nhap voi quyen la: " + role)
-        if (role == 'Admin'){
+        if (role == 'Admin') {
             res.redirect('/')
-        }else if( role == 'Trainer'){
+        } else if (role == 'Trainer') {
             res.redirect('/trainerIndex')
-        // }else {
-        //     res.render('staffIndex')
         }
     }
-})
 
+
+})
+app.get('/profile', async (req, res) => {
+    const user = await userInfo();
+    console.log(user)
+    res.render('profile', { dataInfo: user })
+})
 app.get('/login', (req, res) => {
     res.render('login')
 })
@@ -53,6 +62,7 @@ const staffController = require('./staff')
 app.use('/staff', staffController)
 
 const trainerController = require('./trainer')
+const async = require('hbs/lib/async')
 app.use('/trainer', trainerController)
 
 const PORT = process.env.PORT || 5000

@@ -11,6 +11,7 @@ router.get('/addUser',(req,res)=>{
 })
 router.post('/addUser',async (req,res)=>{
     const name = req.body.txtUname
+    const fullname = req.body.txtFullname
     const pass = req.body.txtPassword
     const role = req.body.txtRole
     const age = req.body.txtAge
@@ -19,6 +20,7 @@ router.post('/addUser',async (req,res)=>{
     const email = req.body.txtEmail
     const objectToInsert = {
         userName: name,
+        fullName: fullname,
         password: pass,
         role: role,
         age: age,

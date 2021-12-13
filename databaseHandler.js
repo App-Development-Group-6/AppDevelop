@@ -1,4 +1,4 @@
-const {MongoClient,ObjectId} = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 const URL = 'mongodb://localhost:27017';
 const DATABASE_NAME = "AppDev"
@@ -9,18 +9,27 @@ async function getDB() {
     return dbo;
 }
 
-async function checkUserRole(nameI,passI){
+async function checkUserRole(nameI, passI) {
     const dbo = await getDB();
-    const user= await dbo.collection("Users").findOne({userName:nameI,password:passI});
-    if (user==null) {
+    const user = await dbo.collection("Users").findOne({ userName: nameI, password: passI });
+    if (user == null) {
         return "-1"
-    }else{
-        console.log(user)
+    } else {
         return user.role;
     }
 }
 
-async function insertObject(collectionName,objectToInsert){
+async function userInfo() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").findOne({});
+    if (user == null) {
+        console.log("ko cos ket qua tra ve")
+        return "-1"
+    } else {
+        return user;
+    }
+}
+async function insertObject(collectionName, objectToInsert) {
     const dbo = await getDB();
     const newObject = await dbo.collection(collectionName).insertOne(objectToInsert);
     console.log("Gia tri id moi duoc insert la: ", newObject.insertedId.toHexString());
@@ -43,15 +52,16 @@ async function deleteCourse(idInput) {
     await dbo.collection("Courses").deleteOne({ "_id": ObjectId(idInput) });
 }
 
-async function getCourseById(idInput){
+async function getCourseById(idInput) {
     const dbo = await getDB();
-    const course = await dbo.collection("Courses").findOne({"_id":ObjectId(idInput)});
+    const course = await dbo.collection("Courses").findOne({ "_id": ObjectId(idInput) });
     return course;
 }
 
-async function updateCourse(idInput, cid, nip, mip){
+async function updateCourse(idInput, cid, nip, mip) {
     const dbo = await getDB();
-    await dbo.collection("Courses").updateOne({"_id":ObjectId(idInput)},{$set:{courseId:cid, courseName:nip, mount:mip}});
+    await dbo.collection("Courses").updateOne({ "_id": ObjectId(idInput) }, { $set: { courseId: cid, courseName: nip, mount: mip } });
 }
 
-module.exports = {checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse}
+
+module.exports = { checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo }

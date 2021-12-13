@@ -1,10 +1,14 @@
 const express = require('express')
-const { getAllUser, insertObject, getAllCourse, deleteCourse, getCourseById, updateCourse } = require('./databaseHandler')
+const async = require('hbs/lib/async')
+const { insertObject, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo } = require('./databaseHandler')
 const router = express.Router()
 
+
 router.get('/', async (req,res)=>{
-    const allUser = await getAllUser();
-    res.render('trainerIndex',{data:allUser})
+    const trainer = await userInfo();
+    console.log("Test trainer")
+    console.log(trainer)
+    res.render('trainerIndex',{userInfo:trainer})
 })
 
 router.get('/takeMark',(req,res)=>{
@@ -54,5 +58,6 @@ router.post('/updateCourse', async (req,res)=>{
     await updateCourse(id, cid, name, mounts)
     res.redirect('/trainer/course')
 })
+
 
 module.exports = router;

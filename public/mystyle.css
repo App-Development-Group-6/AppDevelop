@@ -1,0 +1,33 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a, .menubar {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: cyan;
+}
+
+.account_image {
+    background-color: cornsilk;
+}
+
+.content-table-profile, th {
+    padding: 14px;
+    margin: 0px;
+    text-align: center;
+}
+
+.content-table-profile, td {
+    padding: 14px;
+    margin: 0px;
+    text-align: center;
+
+}
