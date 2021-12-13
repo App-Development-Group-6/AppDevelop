@@ -38,8 +38,7 @@ app.post('/login', async (req, res) => {
             res.redirect('/trainerIndex')
         // }else {
         //     res.render('staffIndex')
-        // }
-        
+        }
     }
 })
 
