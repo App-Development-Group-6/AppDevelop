@@ -13,22 +13,23 @@ async function checkUserRole(nameI, passI) {
     const dbo = await getDB();
     const user = await dbo.collection("Users").findOne({ userName: nameI, password: passI });
     if (user == null) {
+        console.log("KHong ton tai")
         return "-1"
     } else {
         return user.role;
     }
 }
 
-async function userInfo() {
-    const dbo = await getDB();
-    const user = await dbo.collection("Users").findOne({});
-    if (user == null) {
-        console.log("ko cos ket qua tra ve")
-        return "-1"
-    } else {
-        return user;
-    }
-}
+// async function userInfo() {
+//     const dbo = await getDB();
+//     const user = await dbo.collection("Users").findOne({});
+//     if (user == null) {
+//         console.log("ko cos ket qua tra ve")
+//         return "-1"
+//     } else {
+//         return user;
+//     }
+// }
 async function insertObject(collectionName, objectToInsert) {
     const dbo = await getDB();
     const newObject = await dbo.collection(collectionName).insertOne(objectToInsert);
@@ -64,4 +65,4 @@ async function updateCourse(idInput, cid, nip, mip) {
 }
 
 
-module.exports = { checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo }
+module.exports = { checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse,}

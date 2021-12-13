@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole, userInfo } = require('./databaseHandler')
+const { checkUserRole, } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -12,47 +12,53 @@ app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUnini
 app.use(express.static('public'))
 
 app.get('/', requiresLogin, (req, res) => {
-    const user = req.session["User"]
-    res.render('index', { userInfo: user })
+  const user = req.session["User"]
+  res.render('index', { dataInfo: user })
 })
 
-app.get('/trainerIndex', requiresLogin, async (req, res) => {
+app.get('/trainerIndex', requiresLogin, (req, res) => {
+  const user = req.session["User"]
+  res.render('trainerIndex', { dataInfo: user })
 
-    // const user = req.session["User"]
-    // res.render('trainerIndex', { userInfo: user })
-
-    const user = await userInfo();
-    res.render('trainerIndex',{userInfo:user})
 })
 
 app.post('/login', async (req, res) => {
-    const name = req.body.txtName
-    const pass = req.body.txtPass
-    const role = await checkUserRole(name, pass)
-    if (role == -1) {
-        res.render('login')
-    } else {
-        req.session["User"] = {
-            userName: name,
-            role: role
-        }
-        console.log("Ban dang dang nhap voi quyen la: " + role)
-        if (role == 'Admin') {
-            res.redirect('/')
-        } else if (role == 'Trainer') {
-            res.redirect('/trainerIndex')
-        }
-    }
-
-
-})
-app.get('/profile', async (req, res) => {
-    const user = await userInfo();
-    console.log(user)
-    res.render('profile', { dataInfo: user })
-})
-app.get('/login', (req, res) => {
+  const name = req.body.txtName
+  const pass = req.body.txtPass
+  const role = await checkUserRole(name, pass)
+  if (role == -1) {
     res.render('login')
+  } else {
+    req.session["User"] =
+    {
+      userName: name,
+      role: role,
+    }
+    console.log(req.session["User"])
+    console.log("Ban dang dang nhap voi quyen la: " + role)
+    if (role == 'Admin') {
+      res.redirect('/')
+    } else if (role == 'Trainer') {
+      res.redirect('/trainerIndex')
+    }
+  }
+})
+
+app.get('/login', (req, res) => {
+  res.render('login')
+})
+
+app.get('/logout', function (req, res, next) {
+  if (req.session["User"]) {
+    // delete session object
+    req.session.destroy(function (err) {
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
+  }
 })
 
 const adminController = require('./admin')

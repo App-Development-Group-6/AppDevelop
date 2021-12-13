@@ -3,20 +3,20 @@ const async = require('hbs/lib/async')
 const { insertObject, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo } = require('./databaseHandler')
 const router = express.Router()
 
+router.use(express.static('public'))
 
 router.get('/', async (req,res)=>{
-    const trainer = await userInfo();
-    console.log("Test trainer")
-    console.log(trainer)
-    res.render('trainerIndex',{userInfo:trainer})
+    const trainer = req.session["User"];
+    res.render('trainerIndex',{dataInfo:trainer})
 })
 
 router.get('/takeMark',(req,res)=>{
     res.render('takeMark')
 })
 
-router.get('/addCourse',(req,res)=>{
-    res.render('addCourse')
+router.get('/addCourse', async (req,res)=>{
+    const trainer = await userInfo();
+    res.render('addCourse',{dataInfo:trainer})
 })
 
 router.post('/addCourse', async (req,res)=>{
@@ -35,7 +35,8 @@ router.post('/addCourse', async (req,res)=>{
 
 router.get('/course',async (req,res)=>{
     const allcourse = await getAllCourse();
-    res.render('course',{courseinfo:allcourse})
+    const trainer = await userInfo();
+    res.render('course',{courseinfo:allcourse, dataInfo:trainer})
 })
 
 router.get('/deleteCourse',async (req,res)=>{
@@ -47,7 +48,8 @@ router.get('/deleteCourse',async (req,res)=>{
 router.get('/editCourse', async(req,res)=>{
     const idInput = req.query.id;
     const findcourse = await getCourseById(idInput)
-    res.render('editC',{course:findcourse})
+    const trainer =await userInfo();
+    res.render('editC',{course:findcourse, dataInfo:trainer})
 })
 
 router.post('/updateCourse', async (req,res)=>{
@@ -59,5 +61,10 @@ router.post('/updateCourse', async (req,res)=>{
     res.redirect('/trainer/course')
 })
 
+router.get('/profileTrainer', async (req, res) => {
+    const trainer = req.session["User"]
+    console.log(trainer)
+    res.render('profileTrainer', { dataInfo: trainer })
+})
 
 module.exports = router;

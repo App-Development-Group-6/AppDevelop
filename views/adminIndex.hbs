@@ -11,36 +11,40 @@
 </head>
 
 <body>
-    <h1>Welcom Admin Page</h1>
-    <ul>
-        <li>Add Staff</li>
-        <li>Add Trainer</li>
-        <li>Add Trainee</li>
-    </ul>
-    <table border="1">
-        <tr>
-            <th>User Name</th>
-            <th>Full Name</th>
-            <th>Password</th>
-            <th>Role</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Number</th>
-            <th>Email</th>
-        </tr>
-        {{#each data}}
-        <tr>
-            <td>{{userName}}</td>
-            <td>{{fullName}}</td>
-            <td>{{password}} </td>
-            <td>{{role}}</td>
-            <td>{{age}}</td>
-            <td>{{gender}}</td>
-            <td>{{number}}</td>
-            <td>{{email}}</td>
-        </tr>
-        {{/each}}
-    </table>
+    <center>
+        <h1>Welcom Admin Page</h1>
+        <ul>
+            <li>Add Staff</li>
+            <li>Add Trainer</li>
+            <li>Add Trainee</li>
+            <li><a href="/admin/addUser">Add more User</a></li>
+            <li class="menubar"><a href="profile">Profile</a></li>
+        </ul>
+        <table border="1">
+            <tr>
+                <th>User Name</th>
+                <th>Full Name</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Number</th>
+                <th>Email</th>
+            </tr>
+            {{#each data}}
+            <tr>
+                <td>{{userName}}</td>
+                <td>{{fullName}}</td>
+                <td>{{password}} </td>
+                <td>{{role}}</td>
+                <td>{{age}}</td>
+                <td>{{gender}}</td>
+                <td>{{number}}</td>
+                <td>{{email}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </center>
 </body>
 
 </html>

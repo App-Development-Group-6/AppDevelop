@@ -10,9 +10,9 @@ router.get('/addUser',(req,res)=>{
     res.render('addUser')
 })
 router.post('/addUser',async (req,res)=>{
-    const name = req.body.txtUname
+    const name = req.body.txtname
     const fullname = req.body.txtFullname
-    const pass = req.body.txtPassword
+    const pass = req.body.txtPass
     const role = req.body.txtRole
     const age = req.body.txtAge
     const gender = req.body.txtGender

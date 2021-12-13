@@ -17,7 +17,8 @@
             <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px" height="30px"> {{userInfo.role}} - {{userInfo.userName}} </a>
+            <a class="account_image" href="/trainer/profileTrainer"><img src="images/account.png" alt="account icon" width="30px" height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
+            <a href="/logout">Logout</a>
         </div>
     </div>
     <center>
@@ -27,12 +28,12 @@
                 <li class="menubar"><a href="/trainer/course">Course</a></li>
                 <li class="menubar"><a href="/trainer/about"></a>About</li>
                 <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="profile">Profile</a></li>
+                <li class="menubar"><a href="/trainer/profileTrainer">Profile</a></li>
             </ul>
         </div>
         <hr>
         <div>
-            <h1>Hello {{userInfo.role}} - {{userInfo.userName}}</h1>
+            <h1>Hello {{dataInfo.role}} - {{dataInfo.userName}}</h1>
             <p>Welcome to FPT companny!!! <br><br> Have a good day!!!</p>
         </div>
     </center>
