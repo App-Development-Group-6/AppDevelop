@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole, } = require('./databaseHandler')
+const { checkUserRole,  } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -16,8 +16,9 @@ app.get('/', requiresLogin, (req, res) => {
   res.render('index', { dataInfo: user })
 })
 
-app.get('/trainerIndex', requiresLogin, (req, res) => {
+app.get('/trainerIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
+  console.log(user)
   res.render('trainerIndex', { dataInfo: user })
 
 })
@@ -32,6 +33,7 @@ app.post('/login', async (req, res) => {
     req.session["User"] =
     {
       userName: name,
+      password: pass,
       role: role,
     }
     console.log(req.session["User"])

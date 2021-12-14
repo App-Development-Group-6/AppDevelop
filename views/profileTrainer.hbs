@@ -21,7 +21,7 @@
                 <strong>FPT Software</strong>
             </a>
             <a class="account_image" href="/trainer/profileTrainer"><img src="images/account.png" alt="account icon" width="30px"
-                    height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
+                    height="30px"> {{dataInfo.role}} - {{dataInfo.dataInfoName}} </a>
             <a href="/logout">Logout</a>
         </div>
     </div>
@@ -36,7 +36,7 @@
             </ul>
         </div>
         <h1>Welcom to Profile Page</h1>
-        <table border="1">
+        <table border="1" >
             <tr class="content-table-profile">
                 <th>User Name</th>
                 <th>Full Name</th>
@@ -48,7 +48,7 @@
                 <th>Email</th>
             </tr>
             <tr class="content-table-profile">
-                <td>{{dataInfo.userName}}</td>
+                <td>{{dataInfo.dataInfoName}}</td>
                 <td>{{dataInfo.fullName}}</td>
                 <td>{{dataInfo.password}} </td>
                 <td>{{dataInfo.role}}</td>
