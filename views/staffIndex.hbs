@@ -11,26 +11,22 @@
 </head>
 
 <body>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <strong>FPT Software</strong>
+            </a>
+            <a class="account_image" href="/trainer/profileTrainer"><img src="images/account.png" alt="account icon"
+                    width="30px" height="30px"> {{dataInfo.role}} - {{dataInfo.userName}}</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
     <center>
-        <h1> Welcome to Staff page </h1>
+        <h1>Welcom Staff Page</h1>
         <ul>
-            <li><a href="/staff/addTrainer">Add Trainer</a></li>
-            <li><a href="/staff/addTrainee">Add Trainee</a></li>
-            <li><a href="/staff/addCourse">Add Course</a></li>
+            <li class="menubar"><a href="/staffIndex">Home</a></li>
+            <li class="menubar"><a href="/staff/course">Course</a></li>
         </ul>
-        <table border="1">
-            <tr>
-                <th>Course's Name</th>
-                <th>Description</th>
-            </tr>
-            {{#each data}}
-            <tr>
-                <td>{{courseName}}</td>
-                <td>{{des}}</td>
-            </tr>
-            {{/each}}
-        </table>
     </center>
 </body>
-
 </html>
