@@ -57,4 +57,10 @@ router.post('/addCourse',async (req,res)=>{
 router.post('/searchCourse',async(req,res)=>{
     const nameInput = req.body.txtName;
 })
+router.post('/viewTrainer', async(req,res)=>{
+})
+router.post('/editTrainer', async(req,res)=>{
+})
+router.post('/deleteTrainer', async(req,res)=>{
+})
 module.exports = router;
