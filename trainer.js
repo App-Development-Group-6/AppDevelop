@@ -62,12 +62,6 @@ router.post('/updateCourse', async (req, res) => {
     res.redirect('/trainer/course')
 })
 
-router.get('/profileTrainer', requiresLogin, async (req, res) => {
-    const idInput = req.query.id
-    const user = await userInfo(idInput)
-    console.log(idInput)
-    console.log(user)
-    res.render('profileTrainer', { dataInfo: user })
-})
+
 
 module.exports = router;

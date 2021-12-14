@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole,  } = require('./databaseHandler')
+const { checkUserRole, userInfo, getAllUser } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -8,19 +8,25 @@ const app = express()
 app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
-app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
+app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 600000 }, saveUninitialized: false, resave: false }))
 app.use(express.static('public'))
 
-app.get('/', requiresLogin, (req, res) => {
+app.get('/', requiresLogin, async (req, res) => {
   const user = req.session["User"]
-  res.render('index', { dataInfo: user })
+  const all = await getAllUser();
+  res.render('index', { dataInfo: user, user: all })
 })
 
 app.get('/trainerIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
   console.log(user)
   res.render('trainerIndex', { dataInfo: user })
+})
 
+app.get('/adminIndex', requiresLogin, async (req, res) => {
+  const user = req.session["User"]
+  console.log(user)
+  res.render('adminIndex', { dataInfo: user })
 })
 
 app.post('/login', async (req, res) => {
@@ -39,11 +45,19 @@ app.post('/login', async (req, res) => {
     console.log(req.session["User"])
     console.log("Ban dang dang nhap voi quyen la: " + role)
     if (role == 'Admin') {
-      res.redirect('/')
+      res.redirect('/adminIndex',)
     } else if (role == 'Trainer') {
       res.redirect('/trainerIndex')
     }
   }
+})
+
+app.get('/profile', async (req, res) => {
+  const idInput = req.query.id
+  const user = await userInfo(idInput)
+  console.log(idInput)
+  console.log(user)
+  res.render('profile', { dataInfo: user })
 })
 
 app.get('/login', (req, res) => {
