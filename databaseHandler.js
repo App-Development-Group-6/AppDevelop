@@ -54,10 +54,13 @@ async function updateCourse(idInput, cid, nip, mip) {
     await dbo.collection("Courses").updateOne({ "_id": ObjectId(idInput) }, { $set: { courseId: cid, courseName: nip, mount: mip } });
 }
 
-async function userInfo(idInput) {
+async function userInfo(uname) {
     const dbo = await getDB();
-    const user = await dbo.collection("Users").findOne({ "_id": ObjectId(idInput) });
-    return user;
+    const user = await dbo.collection("Users").findOne({ "userName": uname.userName });
+    if (user == null) {
+    } else {
+        return user;
+    }
 }
 
 module.exports = { checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo }

@@ -62,6 +62,4 @@ router.post('/updateCourse', async (req, res) => {
     res.redirect('/trainer/course')
 })
 
-
-
 module.exports = router;

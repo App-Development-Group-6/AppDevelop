@@ -19,13 +19,11 @@ app.get('/', requiresLogin, async (req, res) => {
 
 app.get('/trainerIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
-  console.log(user)
   res.render('trainerIndex', { dataInfo: user })
 })
 
 app.get('/adminIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
-  console.log(user)
   res.render('adminIndex', { dataInfo: user })
 })
 
@@ -42,7 +40,6 @@ app.post('/login', async (req, res) => {
       password: pass,
       role: role,
     }
-    console.log(req.session["User"])
     console.log("Ban dang dang nhap voi quyen la: " + role)
     if (role == 'Admin') {
       res.redirect('/adminIndex',)
@@ -53,9 +50,9 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/profile', async (req, res) => {
-  const idInput = req.query.id
-  const user = await userInfo(idInput)
-  console.log(idInput)
+  const uname = req.session["User"]
+  const user = await userInfo(uname)
+  console.log("test profile")
   console.log(user)
   res.render('profile', { dataInfo: user })
 })
