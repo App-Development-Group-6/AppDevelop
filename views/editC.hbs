@@ -18,7 +18,7 @@
             <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px"
+            <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
                     height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
             <a href="/logout">Logout</a>
         </div>
@@ -30,7 +30,7 @@
                 <li class="menubar"><a href="/trainer/course">Course</a></li>
                 <li class="menubar"><a href="/trainer/about"></a>About</li>
                 <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="profile">Profile</a></li>
+                <li class="menubar"><a href="/profile">Profile</a></li>
             </ul>
         </div>
         <hr>
@@ -40,6 +40,8 @@
                 Course's ID: <input type="text" name="txtId" value="{{course.courseId}}" id="">
                 <br><br>
                 Course's Name: <input type="text" name="txtCourseName" value="{{course.courseName}}" id="">
+                <br><br>
+                Time: <input type="date" name="txtTime" value="{{course.time}}" id="">
                 <br><br>
                 Mount of Trainess:
                 <input type="text" name="txtMount" value="{{course.mount}}">

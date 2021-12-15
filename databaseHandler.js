@@ -49,9 +49,9 @@ async function getCourseById(idInput) {
     return course;
 }
 
-async function updateCourse(idInput, cid, nip, mip) {
+async function updateCourse(idInput, cid, time, nip, mip) {
     const dbo = await getDB();
-    await dbo.collection("Courses").updateOne({ "_id": ObjectId(idInput) }, { $set: { courseId: cid, courseName: nip, mount: mip } });
+    await dbo.collection("Courses").updateOne({ "_id": ObjectId(idInput) }, { $set: { courseId: cid, courseName: nip, time:time, mount: mip } });
 }
 
 async function userInfo(uname) {

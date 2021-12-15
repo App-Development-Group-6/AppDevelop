@@ -23,21 +23,23 @@ router.get('/addCourse', async (req, res) => {
 router.post('/addCourse', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
+    const time = req.body.txtTime;
     const mount = req.body.txtMount
     const ObjectToInsert = {
         courseId: id,
         courseName: name,
+        time: time,
         mount: mount
     }
     insertObject('Courses', ObjectToInsert)
-    const allcourse = await getAllCourse();
-    res.render('course', { courseinfo: allcourse })
+    const courses = await getAllCourse();
+    res.render('course', { course: courses })
 })
 
 router.get('/course', async (req, res) => {
-    const allcourse = await getAllCourse();
+    const courses = await getAllCourse();
     const trainer = req.session["User"];
-    res.render('course', { courseinfo: allcourse, dataInfo: trainer })
+    res.render('course', { course: courses, dataInfo: trainer })
 })
 
 router.get('/deleteCourse', async (req, res) => {
@@ -57,9 +59,11 @@ router.post('/updateCourse', async (req, res) => {
     const id = req.body.id;
     const cid = req.body.txtId;
     const name = req.body.txtCourseName;
+    const time = req.body.txtTime;
     const mounts = req.body.txtMount;
-    await updateCourse(id, cid, name, mounts)
+    await updateCourse(id, cid, name,time, mounts)
     res.redirect('/trainer/course')
 })
+
 
 module.exports = router;

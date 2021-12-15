@@ -30,7 +30,7 @@
                 <li class="menubar"><a href="/trainer/course">Course</a></li>
                 <li class="menubar"><a href="/trainer/about"></a>About</li>
                 <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="profile">Profile</a></li>
+                <li class="menubar"><a href="/profile">Profile</a></li>
             </ul>
         </div>
         <div>
@@ -42,16 +42,21 @@
                 <tr>
                     <th>Course's ID</th>
                     <th>Name of Course</th>
-                    <th>Mount of Trainees</th>
+                    <th>Time</th>
+                    <th>Slot</th>
+                    <th>Trainees</th>
                 </tr>
-                {{#each courseinfo}}
+                {{#each course}}
                 <tr>
-                    <td>{{courseId}}</td>
+
+                    <td>{{courseId}} </td>
                     <td>{{courseName}}
                         <a href="/trainer/editCourse?id={{_id}}">Edit</a>
                         <a href="/trainer/deleteCourse?id={{_id}}">Delete</a>
                     </td>
-                    <td>{{mount}}</td>
+                    <td>{{time}} </td>
+                    <td>{{mount}} </td>
+                    <td><a href=""> See more </a> </td>
                 </tr>
                 {{/each}}
             </table>
