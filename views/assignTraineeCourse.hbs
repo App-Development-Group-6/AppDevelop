@@ -9,7 +9,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="mystyle.css">
     </link>
-    <title>Coure Page</title>
+    <title>Add Course</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
+            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px"
                     height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
             <a href="/logout">Logout</a>
         </div>
@@ -30,37 +30,18 @@
                 <li class="menubar"><a href="/trainer/course">Course</a></li>
                 <li class="menubar"><a href="/trainer/about"></a>About</li>
                 <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="/profile">Profile</a></li>
+                <li class="menubar"><a href="profile">Profile</a></li>
             </ul>
         </div>
-        <div>
-            <a href="/trainer/addCourse"> Add new Course</a>
-            <hr>
-        </div>
-        <div>
-            <table border="1" style="text-align: center;">
-                <tr>
-                    <th>Course's ID</th>
-                    <th>Name of Course</th>
-                    <th>Time</th>
-                    <th>Slot</th>
-                    <th>Trainees</th>
-                </tr>
-                {{#each course}}
-                <tr>
-
-                    <td>{{courseId}} </td>
-                    <td>{{courseName}}
-                        <a href="/trainer/editCourse?id={{_id}}">Edit</a>
-                        <a href="/trainer/deleteCourse?id={{_id}}">Delete</a>
-                    </td>
-                    <td>{{time}} </td>
-                    <td>{{mount}} </td>
-                    <td><a href="/trainer/traineecourse?courseId={{courseId}} "> See more </a> </td>
-                </tr>
-                {{/each}}
-            </table>
-        </div>
+        <hr>
+        <h1>Enter correctly information</h1>
+        <form method="post" action="assignTraineeCourse">
+            Trainee's ID: <input type="text" name="txtTraineeId" id="">
+            <br><br>
+            Course's ID: <input type="text" name="txtCourseId" id="">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
     </center>
 </body>
 

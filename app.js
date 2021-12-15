@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole, userInfo, getAllUser } = require('./databaseHandler')
+const { checkUserRole, userInfo, getAllUser, insertObject } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -24,7 +24,8 @@ app.get('/trainerIndex', requiresLogin, async (req, res) => {
 
 app.get('/adminIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
-  res.render('adminIndex', { dataInfo: user })
+  const users = await getAllUser();
+  res.render('adminIndex', { dataInfo: user,data:users })
 })
 
 app.post('/login', async (req, res) => {
@@ -52,10 +53,24 @@ app.post('/login', async (req, res) => {
 app.get('/profile', async (req, res) => {
   const uname = req.session["User"]
   const user = await userInfo(uname)
-  console.log("test profile")
-  console.log(user)
   res.render('profile', { dataInfo: user })
 })
+
+app.get('/assignTraineeCourse', async (req, res) => {
+  res.render('assignTraineeCourse')
+})
+
+app.post('/assignTraineeCourse',async (req,res)=>{
+  const traineeid = req.body.txtTraineeId
+  const courseid = req.body.txtCourseId
+  const trainee_course = {
+    userId: traineeid,
+    courseId: courseid
+  }
+await insertObject("TraineeCourse", trainee_course)
+res.render('')
+})
+
 
 app.get('/login', (req, res) => {
   res.render('login')
