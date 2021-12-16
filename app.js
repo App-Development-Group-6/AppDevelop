@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole, userInfo, getAllUser } = require('./databaseHandler')
+const { checkUserRole, userInfo, getAllUser, insertObject } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -19,14 +19,13 @@ app.get('/', requiresLogin, async (req, res) => {
 
 app.get('/trainerIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
-  console.log(user)
   res.render('trainerIndex', { dataInfo: user })
 })
 
 app.get('/adminIndex', requiresLogin, async (req, res) => {
   const user = req.session["User"]
-  console.log(user)
-  res.render('adminIndex', { dataInfo: user })
+  const users = await getAllUser();
+  res.render('adminIndex', { dataInfo: user,data:users })
 })
 
 app.post('/login', async (req, res) => {
@@ -42,7 +41,6 @@ app.post('/login', async (req, res) => {
       password: pass,
       role: role,
     }
-    console.log(req.session["User"])
     console.log("Ban dang dang nhap voi quyen la: " + role)
     if (role == 'Admin') {
       res.redirect('/adminIndex',)
@@ -53,12 +51,26 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/profile', async (req, res) => {
-  const idInput = req.query.id
-  const user = await userInfo(idInput)
-  console.log(idInput)
-  console.log(user)
+  const uname = req.session["User"]
+  const user = await userInfo(uname)
   res.render('profile', { dataInfo: user })
 })
+
+app.get('/assignTraineeCourse', async (req, res) => {
+  res.render('assignTraineeCourse')
+})
+
+app.post('/assignTraineeCourse',async (req,res)=>{
+  const traineeid = req.body.txtTraineeId
+  const courseid = req.body.txtCourseId
+  const trainee_course = {
+    userId: traineeid,
+    courseId: courseid
+  }
+await insertObject("TraineeCourse", trainee_course)
+res.render('')
+})
+
 
 app.get('/login', (req, res) => {
   res.render('login')

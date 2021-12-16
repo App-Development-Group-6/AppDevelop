@@ -12,6 +12,7 @@ router.get('/addUser',(req,res)=>{
 router.post('/addUser',async (req,res)=>{
     const name = req.body.txtname
     const fullname = req.body.txtFullname
+    const uid = req.body.txtId
     const pass = req.body.txtPass
     const role = req.body.txtRole
     const age = req.body.txtAge
@@ -21,12 +22,13 @@ router.post('/addUser',async (req,res)=>{
     const objectToInsert = {
         userName: name,
         fullName: fullname,
+        userId: uid,
         password: pass,
         role: role,
         age: age,
         gender: gender,
         number: number,
-        email: email
+        email: email,
     }
     insertObject("Users", objectToInsert)
     const allUser = await getAllUser();

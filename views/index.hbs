@@ -24,24 +24,7 @@
     </div>
     <center>
         <h1>Hello {{dataInfo.userName}} - {{dataInfo.role}}</h1>
-        <ul>
-            <li class="menubar"><a href="/adminIndex">Admin</a></li>
-            <li class="menubar"><a href="/staffIndex">Staff</a></li>
-            <li class="menubar"><a href="/trainerIndex">Trainer</a></li>
-        </ul>
-        <hr>
-        <table border="1">
-            <tr>
-                <th>User Name</th>
-                <th>Role</th>
-            </tr>
-            {{#each user}}
-            <tr>
-                <td>{{userName}}</td>
-                <td>{{role}} - <a href="/profile?id={{_id}}">More detail</a></td>
-            </tr>
-            {{/each}}
-        </table>
+
     </center>
 </body>
 

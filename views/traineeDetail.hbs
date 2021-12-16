@@ -34,31 +34,34 @@
             </ul>
         </div>
         <div>
-            <a href="/trainer/addCourse"> Add new Course</a>
-            <hr>
+            <h1>
+                Trainee data of Course: {{course.courseId}} - {{course.courseName}}
+            </h1>
         </div>
         <div>
             <table border="1" style="text-align: center;">
                 <tr>
-                    <th>Course's ID</th>
-                    <th>Name of Course</th>
-                    <th>Time</th>
-                    <th>Slot</th>
-                    <th>Trainees</th>
+                    <th>Full Name</th>
+                    <th>ID</th>
+                    <th>Role</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Number</th>
+                    <th>Email</th>
+                    <th>Grade</th>
+                    <th>Option</th>
                 </tr>
-                {{#each course}}
                 <tr>
-
-                    <td>{{courseId}} </td>
-                    <td>{{courseName}}
-                        <a href="/trainer/editCourse?id={{_id}}">Edit</a>
-                        <a href="/trainer/deleteCourse?id={{_id}}">Delete</a>
-                    </td>
-                    <td>{{time}} </td>
-                    <td>{{mount}} </td>
-                    <td><a href="/trainer/traineecourse?courseId={{courseId}} "> See more </a> </td>
+                    <td>{{data.fullName}}</td>
+                    <td>{{data.userId}}</td>
+                    <td>{{data.role}}</td>
+                    <td>{{data.age}}</td>
+                    <td>{{data.gender}}</td>
+                    <td>{{data.number}}</td>
+                    <td>{{data.email}}</td>
+                    <td>None</td>
+                    <td><a href="/trainer/takeMark?userId={{userId}} "> Take Mark </a> </td>
                 </tr>
-                {{/each}}
             </table>
         </div>
     </center>

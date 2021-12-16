@@ -13,15 +13,6 @@
 </head>
 
 <body>
-    <div class="trainer_menu">
-        <ul>
-            <li class="menubar"><a href="/trainerIndex">Home</a></li>
-            <li class="menubar"><a href="/trainer/course">Course</a></li>
-            <li class="menubar"><a href="/trainer/about"></a>About</li>
-            <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-            <li class="menubar"><a href="/trainer/profileTrainer">Profile</a></li>
-        </ul>
-    </div>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
             <a href="/" class="navbar-brand d-flex align-items-center">
@@ -32,9 +23,31 @@
             <a href="/logout">Logout</a>
         </div>
     </div>
-    <form border="1">
+    <center>
+        <div class="trainer_menu">
+            <ul>
+                <li class="menubar"><a href="/trainerIndex">Home</a></li>
+                <li class="menubar"><a href="/trainer/course">Course</a></li>
+                <li class="menubar"><a href="/trainer/about"></a>About</li>
+                <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
+                <li class="menubar"><a href="/trainer/profileTrainer">Profile</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div>
+            <form action="takeMark" border="1">
 
-    </form>
+                <input type="hidden" name="txtId" value="{{data.userId}}" id="">
+
+                Grade: <select name="txtGrade" id="txtGrade">
+                    <option>Passed</option>
+                    <option>Failed</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Grade">
+            </form>
+        </div>
+    </center>
 </body>
 
 </html>
