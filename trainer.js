@@ -1,63 +1,136 @@
+const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
-const { insertObject, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo } = require('./databaseHandler')
+const {
+    ObjectId,
+    getId,
+    insertObject,
+    getAllCourse,
+    getGradeByUserId,
+    deleteCourse,
+    getCourseById,
+    updateCourse,
+    getUserByUserId,
+    getTraineeandCourseId,
+    updateGrade,
+    getDB
+} = require('./databaseHandler')
 const router = express.Router()
 
+router.use(express.static('public'))
 
-router.get('/', async (req,res)=>{
-    const trainer = await userInfo();
-    console.log("Test trainer")
-    console.log(trainer)
-    res.render('trainerIndex',{userInfo:trainer})
+router.get('/', async (req, res) => {
+    const trainer = req.session["User"];
+    res.render('trainerIndex', {
+        dataInfo: trainer
+    })
 })
 
-router.get('/takeMark',(req,res)=>{
-    res.render('takeMark')
+router.get('/addCourse', async (req, res) => {
+    const trainer = req.session["User"];
+    res.render('addCourse', {
+        dataInfo: trainer
+    })
 })
 
-router.get('/addCourse',(req,res)=>{
-    res.render('addCourse')
-})
-
-router.post('/addCourse', async (req,res)=>{
+router.post('/addCourse', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
+    const time = req.body.txtTime;
     const mount = req.body.txtMount
     const ObjectToInsert = {
         courseId: id,
         courseName: name,
+        time: time,
         mount: mount
     }
-    insertObject('Courses',ObjectToInsert)
-    const allcourse = await getAllCourse();
-    res.render('course',{courseinfo:allcourse})
+    insertObject('Courses', ObjectToInsert)
+    const courses = await getAllCourse();
+    res.render('course', {
+        course: courses
+    })
 })
 
-router.get('/course',async (req,res)=>{
-    const allcourse = await getAllCourse();
-    res.render('course',{courseinfo:allcourse})
+router.get('/course', async (req, res) => {
+    const courses = await getAllCourse();
+    const trainer = req.session["User"];
+    res.render('course', {
+        course: courses,
+        dataInfo: trainer
+    })
 })
 
-router.get('/deleteCourse',async (req,res)=>{
+router.get('/deleteCourse', async (req, res) => {
     const idInput = req.query.id;
     await deleteCourse(idInput)
     res.redirect('/trainer/course')
 })
 
-router.get('/editCourse', async(req,res)=>{
+router.get('/editCourse', async (req, res) => {
     const idInput = req.query.id;
     const findcourse = await getCourseById(idInput)
-    res.render('editC',{course:findcourse})
+    const trainer = req.session["User"];
+    res.render('editC', {
+        course: findcourse,
+        dataInfo: trainer
+    })
 })
 
-router.post('/updateCourse', async (req,res)=>{
+router.post('/updateCourse', async (req, res) => {
     const id = req.body.id;
     const cid = req.body.txtId;
     const name = req.body.txtCourseName;
+    const time = req.body.txtTime;
     const mounts = req.body.txtMount;
-    await updateCourse(id, cid, name, mounts)
+    await updateCourse(id, cid, name, time, mounts)
     res.redirect('/trainer/course')
 })
 
+router.get('/traineecourse', async (req, res) => {
+    const cid = req.query.courseId;
+    const trainee = await getTraineeandCourseId(cid);
+    const trainer = req.session["User"];
+    console.log(cid)
+    console.log(trainee)
+    res.render('traineecourse', {
+        data: trainee,
+        dataInfo: trainer,
+        courses: cid
+    })
+})
 
+router.get('/traineeDetail', async (req, res) => {
+    const trainer = req.session["User"];
+    const userid = req.query.userId;
+    const courseid = req.query.courseId;
+    const trainee = await getUserByUserId(userid)
+    const trainees = await getGradeByUserId(userid, courseid);
+    // console.log(trainee)
+    res.render('traineeDetail', {
+        data: trainee,
+        dataInfo: trainer,
+        datas: trainees
+    })
+})
+
+router.get('/takeMark', async (req, res) => {
+    const idInput = req.query.id;
+    const db = await getDB();
+    const trainee = await db.collection("TraineeCourse").findOne({ "_id": ObjectId(idInput) })
+    console.log(trainee)
+    const trainer = req.session["User"];
+    res.render('takeMark', {
+        data: trainee,
+        dataInfo: trainer
+    })
+})
+
+router.post('/updateMark', async (req, res) => {
+    const traineeid = req.body.id
+    const grade = req.body.txtGrade
+    console.log(grade)
+    console.log(traineeid)
+    await updateGrade(traineeid, grade)
+    res.redirect('/trainer/traineecourse')
+})
 module.exports = router;
