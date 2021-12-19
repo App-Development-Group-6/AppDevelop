@@ -111,4 +111,6 @@ async function updateGrade(uid, grade) {
     await dbo.collection("TraineeCourse").updateOne({ "_id": ObjectId(uid) }, { $set: { grade: grade } });
 }
 
+
+
 module.exports = { getDB, ObjectId, checkUserRole, getId, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
