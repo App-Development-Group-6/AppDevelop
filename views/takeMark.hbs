@@ -18,8 +18,6 @@
             <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px"
-                    height="30px"> {{dataInfo.role}} - {{dataInfo.name}} </a>
             <a href="/logout">Logout</a>
         </div>
     </div>
@@ -30,16 +28,16 @@
                 <li class="menubar"><a href="/trainer/course">Course</a></li>
                 <li class="menubar"><a href="/trainer/about"></a>About</li>
                 <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="/trainer/profileTrainer">Profile</a></li>
+                <li class="menubar"><a href="/profile">Profile</a></li>
             </ul>
         </div>
         <hr>
         <div>
-            <form action="takeMark" border="1">
-
-                <input type="hidden" name="txtId" value="{{data.userId}}" id="">
-
-                Grade: <select name="txtGrade" id="txtGrade">
+            <form action="updateMark" border="1" method="post">
+                <h1>Take mark for Trainee: {{data.userId}}  </h1>
+                <input type="hidden" name="id" value="{{data._id}}" id="">
+                Grade:
+                <select name="txtGrade" id="" value="{{data.grade}} ">
                     <option>Passed</option>
                     <option>Failed</option>
                 </select>

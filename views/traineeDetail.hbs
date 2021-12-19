@@ -35,7 +35,7 @@
         </div>
         <div>
             <h1>
-                Trainee data of Course: {{course.courseId}} - {{course.courseName}}
+                Trainee information
             </h1>
         </div>
         <div>
@@ -49,7 +49,6 @@
                     <th>Number</th>
                     <th>Email</th>
                     <th>Grade</th>
-                    <th>Option</th>
                 </tr>
                 <tr>
                     <td>{{data.fullName}}</td>
@@ -59,8 +58,7 @@
                     <td>{{data.gender}}</td>
                     <td>{{data.number}}</td>
                     <td>{{data.email}}</td>
-                    <td>None</td>
-                    <td><a href="/trainer/takeMark?userId={{userId}} "> Take Mark </a> </td>
+                    <td>{{datas.grade}} </td>
                 </tr>
             </table>
         </div>

@@ -78,7 +78,7 @@ async function getAllTrainee() {
 
 async function getTraineeandCourseId(id) {
     const dbo = await getDB();
-    const trainee = await dbo.collection("TraineeCourse").find({"courseId":id}).toArray();
+    const trainee = await dbo.collection("TraineeCourse").find({ "courseId": id }).toArray();
     // console.log(trainee.userId)
     if (trainee == null) {
         return "-1";
@@ -89,7 +89,26 @@ async function getTraineeandCourseId(id) {
 
 async function getUserByUserId(idInput) {
     const dbo = await getDB();
-    const user = await dbo.collection("Users").findOne({ "userId": idInput, "role": "Trainee"});
+    const user = await dbo.collection("Users").findOne({ "userId": idInput, "role": "Trainee" });
     return user;
 }
-module.exports = { getDB, checkUserRole, insertObject, getAllUser, getAllCourse,  getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+
+async function getGradeByUserId(idInput, courseip) {
+    const dbo = await getDB();
+    const user = await dbo.collection("TraineeCourse").findOne({ "userId": idInput, "courseId": courseip });
+    return user;
+}
+
+async function getId(idInput) {
+    const dbo = await getDB();
+    const user = await dbo.collection("TraineeCourse").findOne({ "_id": idInput });
+    console.log(user)
+    return user;
+}
+
+async function updateGrade(uid, grade) {
+    const dbo = await getDB();
+    await dbo.collection("TraineeCourse").updateOne({ "_id": ObjectId(uid) }, { $set: { grade: grade } });
+}
+
+module.exports = { getDB, ObjectId, checkUserRole, getId, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }

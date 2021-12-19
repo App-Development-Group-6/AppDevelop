@@ -35,7 +35,7 @@
         </div>
         <div>
             <h1>
-                Trainee detail of Course: {{courseId}} - {{courseName}}
+                Trainees of this course: {{courses}}
             </h1>
         </div>
         <div>
@@ -47,7 +47,10 @@
                 {{#each data}}
                 <tr>
                     <td> {{userId}} </td>
-                    <td><a href="/trainer/traineeDetail?userId={{userId}}"> Detail</a> </td>
+                    <td><a href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} "> Detail</a>
+                        <a href="/trainer/takeMark?id={{_id}} "> Take Mark</a>
+                    </td>
+
                 </tr>
                 {{/each}}
             </table>
