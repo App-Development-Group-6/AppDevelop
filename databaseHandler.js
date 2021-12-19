@@ -35,6 +35,11 @@ async function insertObject(collectionName, objectToInsert) {
     console.log("Gia tri id moi duoc insert la: ", newObject.insertedId.toHexString());
 }
 
+async function updateDocument(id, updateValues,collectionName){
+    const dbo = await getDatabase();
+    await dbo.collection(collectionName).updateOne({_id:ObjectId(id)},updateValues)
+}
+
 async function getAllUser() {
     const dbo = await getDB();
     const user = await dbo.collection("Users").find({}).toArray();
@@ -64,4 +69,4 @@ async function updateCourse(idInput, cid, nip, mip) {
 }
 
 
-module.exports = { checkUserRole, insertObject, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo }
+module.exports = { checkUserRole, insertObject, updateDocument, getAllUser, getAllCourse, deleteCourse, getCourseById, updateCourse, userInfo }
