@@ -62,9 +62,11 @@ app.get('/assignTraineeCourse', async (req, res) => {
 
 app.post('/assignTraineeCourse',async (req,res)=>{
   const traineeid = req.body.txtTraineeId
+  const grade = req.body.txtGrade
   const courseid = req.body.txtCourseId
   const trainee_course = {
     userId: traineeid,
+    grade: grade,
     courseId: courseid
   }
 await insertObject("TraineeCourse", trainee_course)
