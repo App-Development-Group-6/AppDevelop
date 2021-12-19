@@ -1,5 +1,5 @@
 const express = require('express')
-const { insertObject, getAllTrainer,getAllTrainee, getAllCourse } = require('./databaseHandler')
+const { insertObject, getAllTrainer,getAllTrainee, getAllCourse, getDB } = require('./databaseHandler')
 const router = express.Router()
 
 router.get('/', async (req,res)=>{
@@ -55,12 +55,19 @@ router.post('/addCourse',async (req,res)=>{
 
 })
 router.post('/searchCourse',async(req,res)=>{
-    const nameInput = req.body.txtName;
+    const searchInput = req.body.txtSearch;
+    const dbo = await getDB()
+    const allCourse = await dbo.collection("courses").find({ name: searchInput }).toArray();
+
+    res.render('index', { data: allCourse })
 })
 router.post('/viewTrainer', async(req,res)=>{
 })
 router.post('/editTrainer', async(req,res)=>{
 })
-router.post('/deleteTrainer', async(req,res)=>{
+router.get('/deleteTrainer', async(req,res)=>{
+    const trainerID = req.query.trainerID;
+    await deleteTrainer(id);
+    res.redirect("/");
 })
 module.exports = router;
