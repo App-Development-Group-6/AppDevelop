@@ -11,6 +11,12 @@ router.get('/addUser',(req,res)=>{
     res.render('addUser')
 })
 
+router.get('/deleteUser/:id', async (req, res) => {
+    const idValue = req.params.id
+    await deleteObject(idValue, "Users")
+    res.redirect('/')
+})
+
 router.post('/addUser',async (req,res)=>{
     const name = req.body.txtname
     const fullname = req.body.txtFullname
