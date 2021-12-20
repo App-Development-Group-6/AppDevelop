@@ -66,6 +66,7 @@ router.post('/viewTrainer', async(req,res)=>{
 
 })
 router.post('/editTrainer', async(req,res)=>{
+    
 })
 router.post('/updateTrainer', async (req, res) => {
 })
