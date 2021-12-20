@@ -40,8 +40,14 @@
         </div>
         <div>
             <div>
-                <button> <a href="/trainer/passed"> Passed</a></button>
-                <button> <a href="/trainer/failed"> Failed</a></button>
+                <form action="/trainer/searchmark " method="post">
+                <input type="hidden" name="courseId" id="" value="{{courses}}">
+                    <select name="txtGrade" id="">
+                        <option>Passed</option>
+                        <option>Failed</option>
+                    </select>
+                    <input type="submit" value="Submit">             
+                </form>
             </div>
             <br>
             <table border="1" style="text-align: center;">

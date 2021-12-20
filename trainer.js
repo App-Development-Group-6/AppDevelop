@@ -2,8 +2,8 @@ const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
 const {
+    getPassFailTrainee,
     ObjectId,
-    getId,
     insertObject,
     getAllCourse,
     getGradeByUserId,
@@ -90,8 +90,8 @@ router.get('/traineecourse', async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);
     const trainer = req.session["User"];
-    console.log(cid)
-    console.log(trainee)
+    // console.log(cid)
+    // console.log(trainee)
     res.render('traineecourse', {
         data: trainee,
         dataInfo: trainer,
@@ -117,7 +117,7 @@ router.get('/takeMark', async (req, res) => {
     const idInput = req.query.id;
     const db = await getDB();
     const trainee = await db.collection("TraineeCourse").findOne({ "_id": ObjectId(idInput) })
-    console.log(trainee)
+    // console.log(trainee)
     const trainer = req.session["User"];
     res.render('takeMark', {
         data: trainee,
@@ -128,9 +128,19 @@ router.get('/takeMark', async (req, res) => {
 router.post('/updateMark', async (req, res) => {
     const traineeid = req.body.id
     const grade = req.body.txtGrade
-    console.log(grade)
-    console.log(traineeid)
+    // console.log(grade)
+    // console.log(traineeid)
     await updateGrade(traineeid, grade)
     res.redirect('/trainer/traineecourse')
+})
+
+router.post('/searchmark', async (req,res)=>{
+    const course = req.body.courseId;
+    const grade = req.body.txtGrade;
+    console.log(course)
+    console.log(grade)
+    const result = await getPassFailTrainee(course, grade);
+    const trainer = req.session["User"];
+    res.render('traineecourse',{ data: result, dataInfo: trainer})
 })
 module.exports = router;
