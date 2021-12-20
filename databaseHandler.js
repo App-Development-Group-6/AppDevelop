@@ -1,3 +1,4 @@
+const async = require('hbs/lib/async');
 const { MongoClient, ObjectId } = require('mongodb');
 
 const URL = 'mongodb://localhost:27017';
@@ -114,17 +115,15 @@ async function getGradeByUserId(idInput, courseip) {
     return user;
 }
 
-async function getId(idInput) {
-    const dbo = await getDB();
-    const user = await dbo.collection("TraineeCourse").findOne({ "_id": idInput });
-    console.log(user)
-    return user;
-}
-
 async function updateGrade(uid, grade) {
     const dbo = await getDB();
     await dbo.collection("TraineeCourse").updateOne({ "_id": ObjectId(uid) }, { $set: { grade: grade } });
 }
 
+async function getPassFailTrainee(cid, grade){
+    const dbo = await getDB();
+    const trainee = await dbo.collection("TraineeCourse").find({"courseId" : cid, "grade": grade}).toArray();
+    return trainee;
+}
 
-module.exports = {deleteObject, getDB, ObjectId, checkUserRole, updateDocument, getDocumentById, getId, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+module.exports = {deleteObject, getDB, ObjectId, checkUserRole, getPassFailTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
