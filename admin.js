@@ -1,19 +1,36 @@
 const express = require('express')
-const { insertObject, getAllUser, updateDocument, deleteObject, getDocumentById } = require('./databaseHandler')
+const { insertObject, getAllUser, updateDocument, deleteObject, getDocumentById, getAllStaff, getAllTrainer, getAllTrainee } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 const router = express.Router()
 
-router.get('/', requiresLogin, async (req,res)=>{
+router.get('/', requiresLogin, (req,res)=>{
     const user = req.session["User"]
-    const allUser = await getAllUser();
-    res.render('adminIndex',{dataInfo: user, data:allUser})
+    res.render('adminIndex',{dataInfo: user})
 })
 
 router.get('/users', async (req, res) => {
     const user = req.session["User"]
     const users = await getAllUser();
     res.render('users', { dataInfo: user,data:users })
-  })
+})
+
+router.get('/staff', async (req, res) => {
+    const user = req.session["User"]
+    const users = await getAllStaff();
+    res.render('staff', { dataInfo: user,data:users })
+})
+
+router.get('/trainer', async (req, res) => {
+    const user = req.session["User"]
+    const users = await getAllTrainer();
+    res.render('trainer', { dataInfo: user,data:users })
+})
+
+router.get('/trainee', async (req, res) => {
+    const user = req.session["User"]
+    const users = await getAllTrainee();
+    res.render('trainee', { dataInfo: user,data:users })
+})
 
 router.get('/addUser',(req,res)=>{
     res.render('addUser')
@@ -46,9 +63,8 @@ router.post('/addUser',async (req,res)=>{
         number: number,
         email: email,
     }
-    insertObject("Users", objectToInsert)
-    const allUser = await getAllUser();
-    res.render('users',{data:allUser})
+    await insertObject("Users", objectToInsert)
+    res.redirect('/admin/users')
 
 })
 

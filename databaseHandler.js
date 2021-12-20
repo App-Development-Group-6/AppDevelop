@@ -49,6 +49,24 @@ async function getAllUser() {
     return user;
 }
 
+async function getAllStaff() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").find({role: "Staff"}).toArray();
+    return user;
+}
+
+async function getAllTrainer() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").find({role: "Trainer"}).toArray();
+    return user;
+}
+
+async function getAllTrainee() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").find({role: "Trainee"}).toArray();
+    return user;
+}
+
 async function getAllCourse() {
     const dbo = await getDB();
     const course = await dbo.collection("Courses").find({}).toArray();
@@ -126,4 +144,4 @@ async function getPassFailTrainee(cid, grade){
     return trainee;
 }
 
-module.exports = {deleteObject, getDB, ObjectId, checkUserRole, getPassFailTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+module.exports = {deleteObject, getDB, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
