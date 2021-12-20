@@ -21,7 +21,7 @@ async function checkUserRole(nameI, passI) {
 }
 
 async function deleteObject(id,collectionName){
-    const dbo = await getDatabase()
+    const dbo = await getDB()
     await dbo.collection(collectionName).deleteOne({_id:ObjectId(id)})
 }
 
@@ -32,8 +32,14 @@ async function insertObject(collectionName, objectToInsert) {
 }
 
 async function updateDocument(id, updateValues,collectionName){
-    const dbo = await getDatabase();
+    const dbo = await getDB();
     await dbo.collection(collectionName).updateOne({_id:ObjectId(id)},updateValues)
+}
+
+async function getDocumentById(id, collectionName){
+    const dbo = await getDB()
+    const result = await dbo.collection(collectionName).findOne({_id:ObjectId(id)})
+    return result;
 }
 
 async function getAllUser() {
@@ -121,4 +127,4 @@ async function updateGrade(uid, grade) {
 }
 
 
-module.exports = {deleteObject, getDB, ObjectId, checkUserRole, updateDocument, getId, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+module.exports = {deleteObject, getDB, ObjectId, checkUserRole, updateDocument, getDocumentById, getId, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }

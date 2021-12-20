@@ -18,11 +18,13 @@
     </div>
     <h2 class="mt-5 mb-5 text-center text-success"> Update User</h2>
     <div class="col-md-6 offset-md-3">
-        <form action="/update" method="post">
-            <input type="hidden" name="txtId" value="{{Users._id}}">
-            Username : <input type="text" class="form-control" name="txtUname" value="{{user.name}}">
+        <form action="/admin/update" method="post">
+            <input type="hidden" name="txtOId" value="{{user._id}}">
+            Username : <input type="text" class="form-control" name="txtUname" value="{{user.userName}}">
             <Br>
-            Fullname : <input type="text" class="form-control" name="txtFullname" value="{{user.fullname}}">
+            Fullname : <input type="text" class="form-control" name="txtFullname" value="{{user.fullName}}">
+            <br/>
+            User Id : <input type="text" class="form-control" name="txtId" value="{{user.userId}}">
             <br/>
             Password : <input type="password" class="form-control" name="txtPassword" value="{{user.password}}">
             <br/>
