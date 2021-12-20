@@ -1,5 +1,5 @@
 const express = require('express')
-const { insertObject, getAllUser, updateDocument, deleteObject, getDocumentById, getAllStaff, getAllTrainer, getAllTrainee } = require('./databaseHandler')
+const { insertObject, getAllUser, updateDocument, deleteObject, getDocumentById, getAllStaff, getAllTrainer, getAllTrainee, userInfo } = require('./databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 const router = express.Router()
 
@@ -31,6 +31,12 @@ router.get('/trainee', async (req, res) => {
     const users = await getAllTrainee();
     res.render('trainee', { dataInfo: user,data:users })
 })
+
+router.get('/adminProfile', async (req, res) => {
+    const uname = req.session["User"]
+    const user = await userInfo(uname)
+    res.render('adminProfile', { dataInfo: user })
+  })
 
 router.get('/addUser',(req,res)=>{
     res.render('addUser')
