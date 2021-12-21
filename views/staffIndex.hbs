@@ -22,11 +22,18 @@
         </div>
     </div>
     <center>
-        <h1>Welcom Staff Page</h1>
-        <ul>
-            <li class="menubar"><a href="/staffIndex">Home</a></li>
-            <li class="menubar"><a href="/staff/course">Course</a></li>
-        </ul>
+        <div class="trainer_menu">
+            <ul>
+                <li class="menubar"><a href="/staffIndex">Home</a></li>
+                <li class="menubar"><a href="/Staff/course">Course</a></li>
+                <li class="menubar"><a href="/profileStaff">Profile</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div>
+            <h1>Hello {{dataInfo.role}} - {{dataInfo.userName}}</h1>
+            <p>Welcome to FPT companny!!! <br><br> Have a good day!!!</p>
+        </div>
     </center>
 </body>
 </html>
