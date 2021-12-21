@@ -1,3 +1,4 @@
+const async = require('hbs/lib/async');
 const { MongoClient, ObjectId } = require('mongodb');
 
 const URL = 'mongodb://localhost:27017';
@@ -21,7 +22,7 @@ async function checkUserRole(nameI, passI) {
 }
 
 async function deleteObject(id,collectionName){
-    const dbo = await getDatabase()
+    const dbo = await getDB()
     await dbo.collection(collectionName).deleteOne({_id:ObjectId(id)})
 }
 
@@ -32,13 +33,37 @@ async function insertObject(collectionName, objectToInsert) {
 }
 
 async function updateDocument(id, updateValues,collectionName){
-    const dbo = await getDatabase();
+    const dbo = await getDB();
     await dbo.collection(collectionName).updateOne({_id:ObjectId(id)},updateValues)
+}
+
+async function getDocumentById(id, collectionName){
+    const dbo = await getDB()
+    const result = await dbo.collection(collectionName).findOne({_id:ObjectId(id)})
+    return result;
 }
 
 async function getAllUser() {
     const dbo = await getDB();
     const user = await dbo.collection("Users").find({}).toArray();
+    return user;
+}
+
+async function getAllStaff() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").find({role: "Staff"}).toArray();
+    return user;
+}
+
+async function getAllTrainer() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").find({role: "Trainer"}).toArray();
+    return user;
+}
+
+async function getAllTrainee() {
+    const dbo = await getDB();
+    const user = await dbo.collection("Users").find({role: "Trainee"}).toArray();
     return user;
 }
 
@@ -108,17 +133,15 @@ async function getGradeByUserId(idInput, courseip) {
     return user;
 }
 
-async function getId(idInput) {
-    const dbo = await getDB();
-    const user = await dbo.collection("TraineeCourse").findOne({ "_id": idInput });
-    console.log(user)
-    return user;
-}
-
 async function updateGrade(uid, grade) {
     const dbo = await getDB();
     await dbo.collection("TraineeCourse").updateOne({ "_id": ObjectId(uid) }, { $set: { grade: grade } });
 }
 
+async function getPassFailTrainee(cid, grade){
+    const dbo = await getDB();
+    const trainee = await dbo.collection("TraineeCourse").find({"courseId" : cid, "grade": grade}).toArray();
+    return trainee;
+}
 
-module.exports = {deleteObject, getDB, ObjectId, checkUserRole, updateDocument, getId, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+module.exports = {deleteObject, getDB, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
