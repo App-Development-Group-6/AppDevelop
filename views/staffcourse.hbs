@@ -21,16 +21,18 @@
             </a>
             <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
                     height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a href="/logout">Logout</a>
+            <a class="btn btn-light" href="/logout">Logout</a>
         </div>
     </div>
     <center>
-        <div class="trainer_menu">
-            <ul>
-                <li class="menubar"><a href="/staffIndex">Home</a></li>
-                <li class="menubar"><a href="/staff/staffcourse">Course</a></li>
-                <li class="menubar"><a href="/profile">Profile</a></li>
-            </ul>
+        <div class="staff_menu">
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <ul>
+                    <li class="menubar"><a href="/staffIndex"><strong>Home</strong></a></li>
+                    <li class="menubar"><a href="/staff/staffcourse"><strong>Course</strong></a></li>
+                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
+                </ul>
+            </nav>
         </div>
         <div>
             <a href="/staff/addCourse"> Add new Course</a>
@@ -56,8 +58,8 @@
                     </td>
                     <td>{{time}} </td>
                     <td>{{mount}} </td>
-                    <td><a href="/staff/staffTrainerCourse?courseId={{courseId}} "> See more </a> </td>
-                    <td><a href="/staff/staffTraineeCourse?courseId={{courseId}} "> See more </a> </td>
+                    <td><a class="btn btn-info" href="/staff/staffTrainerCourse?courseId={{courseId}} "> See more </a> </td>
+                    <td><a class="btn btn-info" href="/staff/staffTraineeCourse?courseId={{courseId}} "> See more </a> </td>
 
                 </tr>
                 {{/each}}

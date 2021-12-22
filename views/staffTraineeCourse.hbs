@@ -20,16 +20,18 @@
             </a>
             <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
                     height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a href="/logout">Logout</a>
+            <a class="btn btn-light" href="/logout">Logout</a>
         </div>
     </div>
     <center>
         <div class="staff_menu">
-            <ul>
-                <li class="menubar"><a href="/staffIndex">Home</a></li>
-                <li class="menubar"><a href="/staff/staffcourse">Course</a></li>
-                <li class="menubar"><a href="/profile">Profile</a></li>
-            </ul>
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <ul>
+                    <li class="menubar"><a href="/staffIndex"><strong>Home</strong></a></li>
+                    <li class="menubar"><a href="/staff/staffcourse"><strong>Course</strong></a></li>
+                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
+                </ul>
+            </nav>
         </div>
         <div>
             <h1>
@@ -37,7 +39,8 @@
             </h1>
             <br>
             <a class="btn btn-primary" href="/staff/assignTraineeCourse"> Add Trainee to this course</a>
-            <br><hr>
+            <br>
+            <hr>
         </div>
         <div>
             <table border="1" style="text-align: center;">

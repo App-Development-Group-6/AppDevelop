@@ -141,8 +141,7 @@ router.get("/removeTrainerfromCourse", async (req,res)=>{
     const idi = req.query.id;
     console.log(idi)
     await removeTrainerfromCourse(idi);
-    // const trainer = req.session["User"];
-    res.redirect('/staff/staffTrainerCourse')
+    res.redirect('/staff/staffcourse')
 })
 router.get('/staffTraineeCourse', async (req, res) => {
     const cid = req.query.courseId;

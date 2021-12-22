@@ -60,11 +60,12 @@
                 </tr>
                 {{#each data}}
                 <tr>
-                    <td><strong> {{userId}} </strong>  </td>
-                    <td><a class="btn btn-info" href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} "> Detail</a>
+                    <td><strong> {{userId}} </strong> </td>
+                    <td>
+                        <a class="btn btn-info" href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} ">
+                            Detail</a>
                         <a class="btn btn-primary" href="/trainer/takeMark?id={{_id}} "> Take Mark</a>
                     </td>
-
                 </tr>
                 {{/each}}
             </table>

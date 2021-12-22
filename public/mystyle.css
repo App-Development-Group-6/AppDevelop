@@ -9,6 +9,7 @@ li a, .menubar {
     text-align: center;
     padding: 14px 14px;
     text-decoration: none;
+    margin-left: 120px;
 }
 
 li a:hover {
@@ -30,5 +31,8 @@ li a:hover {
     padding: 14px;
     margin: 0px;
     text-align: center;
+}
 
+.about {
+    margin: 30px 80px 0 80px;
 }
