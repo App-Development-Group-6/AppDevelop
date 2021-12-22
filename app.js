@@ -28,6 +28,12 @@ app.get('/adminIndex', requiresLogin, async (req, res) => {
   res.render('adminIndex', { dataInfo: user,data:users })
 })
 
+app.get('/staffIndex', requiresLogin, async (req, res) => {
+  const user = req.session["User"]
+  res.render('staffIndex', { dataInfo: user })
+})
+
+
 app.post('/login', async (req, res) => {
   const name = req.body.txtName
   const pass = req.body.txtPass
@@ -46,6 +52,8 @@ app.post('/login', async (req, res) => {
       res.redirect('/adminIndex',)
     } else if (role == 'Trainer') {
       res.redirect('/trainerIndex')
+    }else if (role == 'Staff'){
+      res.redirect('/staffIndex')
     }
   }
 })
@@ -54,23 +62,6 @@ app.get('/profile', async (req, res) => {
   const uname = req.session["User"]
   const user = await userInfo(uname)
   res.render('profile', { dataInfo: user })
-})
-
-app.get('/assignTraineeCourse', async (req, res) => {
-  res.render('assignTraineeCourse')
-})
-
-app.post('/assignTraineeCourse',async (req,res)=>{
-  const traineeid = req.body.txtTraineeId
-  const grade = req.body.txtGrade
-  const courseid = req.body.txtCourseId
-  const trainee_course = {
-    userId: traineeid,
-    grade: grade,
-    courseId: courseid
-  }
-await insertObject("TraineeCourse", trainee_course)
-res.render('')
 })
 
 

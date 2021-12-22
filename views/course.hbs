@@ -16,50 +16,58 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
             <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
                 <strong>FPT Software</strong>
             </a>
             <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
                     height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a href="/logout">Logout</a>
+            <a class="btn btn-light" href="/logout">Logout</a>
         </div>
     </div>
     <center>
         <div class="trainer_menu">
-            <ul>
-                <li class="menubar"><a href="/trainerIndex">Home</a></li>
-                <li class="menubar"><a href="/trainer/course">Course</a></li>
-                <li class="menubar"><a href="/trainer/about"></a>About</li>
-                <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="/profile">Profile</a></li>
-            </ul>
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <ul>
+                    <li class="menubar"><a href="/trainerIndex"><strong>Home</strong></a></li>
+                    <li class="menubar"><a href="/trainer/course"><strong>Course</strong></a></li>
+                    <li class="menubar"><a href="/trainer/about"><strong>About</strong></a></li>
+                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
+                </ul>
+            </nav>
         </div>
+        <br>
         <div>
-            <a href="/trainer/addCourse"> Add new Course</a>
-            <hr>
+            <a class="btn btn-primary" href="/trainer/addCourse"> Add new Course</a>
         </div>
+        <br><br>
         <div>
-            <table border="1" style="text-align: center;">
-                <tr>
-                    <th>Course's ID</th>
-                    <th>Name of Course</th>
-                    <th>Time</th>
-                    <th>Slot</th>
-                    <th>Trainees</th>
-                </tr>
-                {{#each course}}
-                <tr>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Course's ID</th>
+                        <th scope="col">Name of Course</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Slot</th>
+                        <th scope="col">Actions</th>
+                        <th scope="col">Trainees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each course}}
+                    <tr>
+                        <th scope="row">{{courseId}}</th>
+                        <td>{{courseName}}</td>
+                        <td>{{time}} </td>
+                        <td>{{mount}} </td>
+                        <td>
+                            <a class="btn btn-secondary" href="/trainer/editCourse?id={{_id}}">Edit</a>
+                            <a class="btn btn-danger" href="/trainer/deleteCourse?id={{_id}}">Delete</a>
+                        </td>
+                        <td><a class="btn btn-info" href="/trainer/traineecourse?courseId={{courseId}} "> See more </a> </td>
 
-                    <td>{{courseId}} </td>
-                    <td>{{courseName}}
-                        <a href="/trainer/editCourse?id={{_id}}">Edit</a>
-                        <a href="/trainer/deleteCourse?id={{_id}}">Delete</a>
-                    </td>
-                    <td>{{time}} </td>
-                    <td>{{mount}} </td>
-                    <td><a href="/trainer/traineecourse?courseId={{courseId}} "> See more </a> </td>
-
-                </tr>
-                {{/each}}
+                    </tr>
+                    {{/each}}
+                </tbody>
             </table>
         </div>
     </center>

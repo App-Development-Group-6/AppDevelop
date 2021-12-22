@@ -83,15 +83,14 @@ router.post('/updateCourse', async (req, res) => {
     const time = req.body.txtTime;
     const mounts = req.body.txtMount;
     await updateCourse(id, cid, name, time, mounts)
-    res.redirect('/trainer/course')
+    const trainer = req.session["User"];
+    res.redirect('/trainer/course',{dataInfo: trainer})
 })
 
 router.get('/traineecourse', async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);
     const trainer = req.session["User"];
-    // console.log(cid)
-    // console.log(trainee)
     res.render('traineecourse', {
         data: trainee,
         dataInfo: trainer,
@@ -117,30 +116,34 @@ router.get('/takeMark', async (req, res) => {
     const idInput = req.query.id;
     const db = await getDB();
     const trainee = await db.collection("TraineeCourse").findOne({ "_id": ObjectId(idInput) })
-    // console.log(trainee)
+    console.log(trainee)
     const trainer = req.session["User"];
-    res.render('takeMark', {
-        data: trainee,
-        dataInfo: trainer
-    })
+        res.render('takeMark', {
+            data: trainee,
+            dataInfo: trainer
+        })
 })
 
 router.post('/updateMark', async (req, res) => {
     const traineeid = req.body.id
+
     const grade = req.body.txtGrade
-    // console.log(grade)
-    // console.log(traineeid)
     await updateGrade(traineeid, grade)
-    res.redirect('/trainer/traineecourse')
+    res.redirect('/trainer/course')
 })
 
-router.post('/searchmark', async (req,res)=>{
+router.post('/searchmark', async (req, res) => {
     const course = req.body.courseId;
     const grade = req.body.txtGrade;
     console.log(course)
     console.log(grade)
     const result = await getPassFailTrainee(course, grade);
     const trainer = req.session["User"];
-    res.render('traineecourse',{ data: result, dataInfo: trainer})
+    res.render('traineecourse', { data: result, dataInfo: trainer })
+})
+
+router.get('/about',(req,res)=>{
+    const trainer = req.session["User"]
+    res.render('about',{dataInfo:trainer})
 })
 module.exports = router;

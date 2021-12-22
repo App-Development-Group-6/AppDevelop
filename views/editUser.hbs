@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +9,14 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Edit User</title>
 </head>
+
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-          <a href="/" class="navbar-brand d-flex align-items-center">
-            <strong>FPT Software</strong>
-          </a>
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
+                <strong>FPT Software</strong>
+            </a>
         </div>
     </div>
     <h2 class="mt-5 mb-5 text-center text-success"> Update User</h2>
@@ -23,26 +26,26 @@
             Username : <input type="text" class="form-control" name="txtUname" value="{{user.userName}}">
             <Br>
             Fullname : <input type="text" class="form-control" name="txtFullname" value="{{user.fullName}}">
-            <br/>
+            <br />
             User Id : <input type="text" class="form-control" name="txtId" value="{{user.userId}}">
-            <br/>
+            <br />
             Password : <input type="password" class="form-control" name="txtPassword" value="{{user.password}}">
-            <br/>
+            <br />
             Role :
-                <select name="txtRole" class="form-control" value="{{user.role}}">
-                    <option>Admin</option>
-                    <option>Staff</option>
-                    <option>Trainer</option>
-                    <option>Trainee</option>
-                </select>
+            <select name="txtRole" class="form-control" value="{{user.role}}">
+                <option>Admin</option>
+                <option>Staff</option>
+                <option>Trainer</option>
+                <option>Trainee</option>
+            </select>
             <Br>
             Age : <input type="number" class="form-control" name="txtAge" value="{{user.age}}">
             <Br>
             Gender :
-                <select name="txtGender" class="form-control" value="{{user.gender}}">
-                    <option>Male</option>
-                    <option>Female</option>
-                </select>
+            <select name="txtGender" class="form-control" value="{{user.gender}}">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
             <Br>
             Number : <input type="number" class="form-control" name="txtNumber" value="{{user.number}}">
             <Br>
@@ -52,4 +55,5 @@
         </form>
     </div>
 </body>
+
 </html>
