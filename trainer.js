@@ -45,10 +45,7 @@ router.post('/addCourse', async (req, res) => {
         mount: mount
     }
     insertObject('Courses', ObjectToInsert)
-    const courses = await getAllCourse();
-    res.render('course', {
-        course: courses
-    })
+    res.redirect('/trainer/course')
 })
 
 router.get('/course', async (req, res) => {

@@ -114,14 +114,17 @@ router.post('/assignTraineeCourse', async (req, res) => {
 })
 
 router.get('/assignTrainerCourse', async (req, res) => {
+    const course = req.query.courseId
+
     const user = req.session["User"]
-    res.render('assignTrainerCourse', { dataInfo: user })
+    res.render('assignTrainerCourse', { dataInfo: user, datas:course})
 })
 
 router.post('/assignTrainerCourse', async (req, res) => {
     const trainerid = req.body.txtTraineeId
     const role = req.body.txtRole
-    const courseid = req.body.txtCourseId
+    const courseid = req.body.courseId
+    console.log(courseid)
     const trainee_course = {
         userId: trainerid,
         role:role,
@@ -137,12 +140,16 @@ router.post('/assignTrainerCourse', async (req, res) => {
         courses: courseid
     })
 })
+
 router.get("/removeTrainerfromCourse", async (req,res)=>{
     const idi = req.query.id;
     console.log(idi)
     await removeTrainerfromCourse(idi);
-    res.redirect('/staff/staffcourse')
+    // ---------------------------------
+   res.redirect('/staff/staffcourse')
 })
+
+
 router.get('/staffTraineeCourse', async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);

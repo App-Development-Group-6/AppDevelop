@@ -34,8 +34,9 @@
                 </ul>
             </nav>
         </div>
+        <br>
         <div>
-            <a href="/staff/addCourse"> Add new Course</a>
+            <a class="btn btn-primary" href="/staff/addCourse"> Add new Course</a>
             <hr>
         </div>
         <div>
@@ -53,8 +54,8 @@
 
                     <td>{{courseId}} </td>
                     <td>{{courseName}}
-                        <a href="/staff/editCourse?id={{_id}}">Edit</a>
-                        <a href="/staff/deleteCourse?id={{_id}}">Delete</a>
+                        <a class="btn btn-secondary" href="/staff/editCourse?id={{_id}}">Edit</a>
+                        <a class="btn btn-danger" href="/staff/deleteCourse?id={{_id}}">Delete</a>
                     </td>
                     <td>{{time}} </td>
                     <td>{{mount}} </td>

@@ -35,28 +35,33 @@
         </div>
         <div>
             <h1>
-                Trainee(s) of this course: {{courses}}
+                Trainer(s) of this course: {{courses}}
             </h1>
             <br>
-            <a class="btn btn-primary" href="/staff/assignTrainerCourse"> Add Trainer to manage course</a>
-            <br><hr>
+            {{#if data}}
+            <div>
+                <table border="1" style="text-align: center;">
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    {{#each data}}
+                    <tr>
+                        <td> {{userId}} </td>
+                        <td> {{role}} </td>
+                        <td> <a class="btn btn-danger" href="/staff/removeTrainerfromCourse?id={{_id}} "> Remove this
+                                Trainer</a> </td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+            {{else }}
+            <a class="btn btn-primary" href="/staff/assignTrainerCourse?courseId={{courses}}"> Add Trainer to manage course</a>
+            {{/if }}
+
         </div>
-        <div>
-            <table border="1" style="text-align: center;">
-                <tr>
-                    <th>ID</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-                {{#each data}}
-                <tr>
-                    <td> {{userId}} </td>
-                    <td> {{role}} </td>
-                    <td> <a class="btn btn-danger" href="/staff/removeTrainerfromCourse?id={{_id}} "> Remove this Trainer</a> </td>
-                </tr>
-                {{/each}}
-            </table>
-        </div>
+
     </center>
 </body>
 
