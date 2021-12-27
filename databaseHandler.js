@@ -112,12 +112,22 @@ async function getAllTrainee() {
 
 async function getTraineeandCourseId(id) {
     const dbo = await getDB();
-    const trainee = await dbo.collection("TraineeCourse").find({ "courseId": id }).toArray();
+    const trainee = await dbo.collection("TraineeCourse").find({ "courseId": id, "role" : "Trainee" }).toArray();
     // console.log(trainee.userId)
     if (trainee == null) {
         return "-1";
     } else {
         return trainee;
+    }
+}
+
+async function getTrainerandCourseId(id) {
+    const dbo = await getDB();
+    const trainer = await dbo.collection("TrainerCourse").find({ "courseId": id, "role" : "Trainer" }).toArray();
+    if (trainer == null) {
+        return "-1";
+    } else {
+        return trainer;
     }
 }
 
@@ -144,4 +154,9 @@ async function getPassFailTrainee(cid, grade){
     return trainee;
 }
 
-module.exports = {deleteObject, getDB, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+async function removeTrainerfromCourse(id){
+    const dbo = await getDB();
+    await dbo.collection("TrainerCourse").deleteOne({"_id":ObjectId(id)});
+}
+
+module.exports = {deleteObject, getDB,getTrainerandCourseId,removeTrainerfromCourse, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }

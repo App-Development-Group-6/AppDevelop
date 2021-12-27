@@ -9,44 +9,40 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="mystyle.css">
     </link>
-    <title>Take Mark Page</title>
+    <title>Add Trainer to manage course</title>
 </head>
 
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
             <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
                 <strong>FPT Software</strong>
             </a>
+            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px"
+                    height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
             <a class="btn btn-light" href="/logout">Logout</a>
         </div>
     </div>
     <center>
-        <div class="trainer_menu">
+        <div class="staff_menu">
             <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
                 <ul>
-                    <li class="menubar"><a href="/trainerIndex"><strong>Home</strong></a></li>
-                    <li class="menubar"><a href="/trainer/course"><strong>Course</strong></a></li>
-                    <li class="menubar"><a href="/trainer/about"><strong>About</strong></a></li>
+                    <li class="menubar"><a href="/staffIndex"><strong>Home</strong></a></li>
+                    <li class="menubar"><a href="/staff/staffcourse"><strong>Course</strong></a></li>
                     <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
                 </ul>
             </nav>
         </div>
-        <br>
-        <div>
-            <form action="updateMark" border="1" method="post">
-                <h1>Take mark for Trainee: {{data.userId}} </h1>
-                <input type="hidden" name="id" value="{{data._id}}" id="">
-                Grade:
-                <select name="txtGrade" id="" value="{{data.grade}} ">
-                    <option>Passed</option>
-                    <option>Failed</option>
-                </select>
-                <br><br>
-                <input class="btn btn-success" type="submit" value="Grade">
-            </form>
-        </div>
+        <hr>
+        <h1>Enter correctly information</h1>
+        <form method="post" action="assignTrainerCourse">
+            Trainee's ID: <input type="text" name="txtTraineeId" id="">
+            <br><br>
+            <input type="hidden" name="txtRole" id="" value="Trainer">
+            Course's ID: <input type="text" name="courseId" id="" value="{{datas}}" readonly>
+            <br><br>
+            <input class="btn btn-success" type="submit" value="Submit">
+        </form>
     </center>
 </body>
 

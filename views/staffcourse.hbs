@@ -25,44 +25,45 @@
         </div>
     </div>
     <center>
-        <div class="trainer_menu">
+        <div class="staff_menu">
             <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
                 <ul>
-                    <li class="menubar"><a href="/trainerIndex"><strong>Home</strong></a></li>
-                    <li class="menubar"><a href="/trainer/course"><strong>Course</strong></a></li>
-                    <li class="menubar"><a href="/trainer/about"><strong>About</strong></a></li>
+                    <li class="menubar"><a href="/staffIndex"><strong>Home</strong></a></li>
+                    <li class="menubar"><a href="/staff/staffcourse"><strong>Course</strong></a></li>
                     <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
                 </ul>
             </nav>
         </div>
         <br>
         <div>
-            <h1>
-                Trainee information
-            </h1>
+            <a class="btn btn-primary" href="/staff/addCourse"> Add new Course</a>
+            <hr>
         </div>
         <div>
-            <table class="table table-bordered">
+            <table border="1" style="text-align: center;">
                 <tr>
-                    <th>Full Name</th>
-                    <th>ID</th>
-                    <th>Role</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Number</th>
-                    <th>Email</th>
-                    <th>Grade</th>
+                    <th>Course's ID</th>
+                    <th>Name of Course</th>
+                    <th>Time</th>
+                    <th>Slot</th>
+                    <th>Trainers</th>
+                    <th>Trainees</th>
                 </tr>
+                {{#each course}}
                 <tr>
-                    <td>{{data.fullName}}</td>
-                    <td>{{data.userId}}</td>
-                    <td>{{data.role}}</td>
-                    <td>{{data.age}}</td>
-                    <td>{{data.gender}}</td>
-                    <td>{{data.number}}</td>
-                    <td>{{data.email}}</td>
-                    <td>{{datas.grade}} </td>
+
+                    <td>{{courseId}} </td>
+                    <td>{{courseName}}
+                        <a class="btn btn-secondary" href="/staff/editCourse?id={{_id}}">Edit</a>
+                        <a class="btn btn-danger" href="/staff/deleteCourse?id={{_id}}">Delete</a>
+                    </td>
+                    <td>{{time}} </td>
+                    <td>{{mount}} </td>
+                    <td><a class="btn btn-info" href="/staff/staffTrainerCourse?courseId={{courseId}} "> See more </a> </td>
+                    <td><a class="btn btn-info" href="/staff/staffTraineeCourse?courseId={{courseId}} "> See more </a> </td>
+
                 </tr>
+                {{/each}}
             </table>
         </div>
     </center>
