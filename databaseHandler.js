@@ -1,7 +1,7 @@
 const async = require('hbs/lib/async');
 const { MongoClient, ObjectId } = require('mongodb');
 
-const DATABASE_URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test'
+const URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test'
 const DATABASE_NAME = 'myDatabase'
 
 async function getDB() {
