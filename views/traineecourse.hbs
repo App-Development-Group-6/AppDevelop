@@ -16,23 +16,26 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
             <a href="/" class="navbar-brand d-flex align-items-center">
+                <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
                 <strong>FPT Software</strong>
             </a>
             <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
                     height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a href="/logout">Logout</a>
+            <a class="btn btn-light" href="/logout">Logout</a>
         </div>
     </div>
     <center>
         <div class="trainer_menu">
-            <ul>
-                <li class="menubar"><a href="/trainerIndex">Home</a></li>
-                <li class="menubar"><a href="/trainer/course">Course</a></li>
-                <li class="menubar"><a href="/trainer/about"></a>About</li>
-                <li class="menubar"><a href="/trainer/contact"></a>Contact</li>
-                <li class="menubar"><a href="/profile">Profile</a></li>
-            </ul>
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <ul>
+                    <li class="menubar"><a href="/trainerIndex"><strong>Home</strong></a></li>
+                    <li class="menubar"><a href="/trainer/course"><strong>Course</strong></a></li>
+                    <li class="menubar"><a href="/trainer/about"><strong>About</strong></a></li>
+                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
+                </ul>
+            </nav>
         </div>
+        <br>
         <div>
             <h1>
                 Trainee(s) of this course: {{courses}}
@@ -41,27 +44,28 @@
         <div>
             <div>
                 <form action="/trainer/searchmark " method="post">
-                <input type="hidden" name="courseId" id="" value="{{courses}}">
+                    <input type="hidden" name="courseId" id="" value="{{courses}}">
                     <select name="txtGrade" id="">
                         <option>Passed</option>
                         <option>Failed</option>
                     </select>
-                    <input type="submit" value="Submit">             
+                    <input class="btn btn-primary" type="submit" value="Submit">
                 </form>
             </div>
             <br>
-            <table border="1" style="text-align: center;">
+            <table class="table table-bordered">
                 <tr>
-                    <th>Trainee's ID</th>
-                    <th>Option</th>
+                    <th><strong>Trainee's ID</strong></th>
+                    <th><strong>Option</strong></th>
                 </tr>
                 {{#each data}}
                 <tr>
-                    <td> {{userId}} </td>
-                    <td><a href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} "> Detail</a>
-                        <a href="/trainer/takeMark?id={{_id}} "> Take Mark</a>
+                    <td><strong> {{userId}} </strong> </td>
+                    <td>
+                        <a class="btn btn-info" href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} ">
+                            Detail</a>
+                        <a class="btn btn-primary" href="/trainer/takeMark?id={{_id}} "> Take Mark</a>
                     </td>
-
                 </tr>
                 {{/each}}
             </table>

@@ -1,3 +1,5 @@
+const { redirect } = require("express/lib/response")
+
 function requiresLogin(req,res,next){
     if(req.session["User"]){
         return next()
@@ -5,5 +7,4 @@ function requiresLogin(req,res,next){
         res.redirect('/login')
     }
 }
-
 module.exports = {requiresLogin}

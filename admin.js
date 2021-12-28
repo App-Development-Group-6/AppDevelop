@@ -71,7 +71,6 @@ router.post('/addUser',async (req,res)=>{
     }
     await insertObject("Users", objectToInsert)
     res.redirect('/admin/users')
-
 })
 
 router.post('/update', async (req, res) => {
@@ -96,7 +95,6 @@ router.post('/update', async (req, res) => {
         number: number,
         email: email
     } };
-
     await updateDocument(id, updateValues, "Users")
     res.redirect('/admin/users')
 })
