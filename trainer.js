@@ -81,7 +81,7 @@ router.post('/updateCourse', async (req, res) => {
     const mounts = req.body.txtMount;
     await updateCourse(id, cid, name, time, mounts)
     const trainer = req.session["User"];
-    res.redirect('/trainer/course',{dataInfo: trainer})
+    res.redirect('/trainer/course')
 })
 
 router.get('/traineecourse', async (req, res) => {

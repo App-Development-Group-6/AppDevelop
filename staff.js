@@ -1,7 +1,7 @@
 const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
-const { insertObject, ObjectId, getAllTrainer, getAllTrainee, getAllCourse, getDB, getTraineeandCourseId, getTrainerandCourseId, removeTrainerfromCourse } = require('./databaseHandler')
+const { insertObject, ObjectId, deleteCourse,updateCourse, getAllTrainer, getAllTrainee, getAllCourse, getDB,getCourseById, getTraineeandCourseId, getTrainerandCourseId, removeTrainerfromCourse } = require('./databaseHandler')
 const router = express.Router()
 router.use(express.static('public'))
 
@@ -24,8 +24,7 @@ router.post('/addCourse', async (req, res) => {
         mount: mount
     }
     insertObject('Courses', ObjectToInsert)
-    const courses = await getAllCourse();
-    res.render('staffcourse', { course: courses })
+    res.redirect('/staff/staffcourse')
 })
 router.get('/staffcourse', async (req, res) => {
     const courses = await getAllCourse();
@@ -45,7 +44,7 @@ router.get('/editCourse', async (req, res) => {
     const idInput = req.query.id;
     const findcourse = await getCourseById(idInput)
     const staff = req.session["User"];
-    res.render('editC', {
+    res.render('editstaffcourse', {
         course: findcourse,
         dataInfo: staff
     })
@@ -58,8 +57,8 @@ router.post('/updateCourse', async (req, res) => {
     const time = req.body.txtTime;
     const mounts = req.body.txtMount;
     await updateCourse(id, cid, name, time, mounts)
-    const trainer = req.session["User"];
-    res.redirect('/staff/staffcourse',{dataInfo: staff})
+    const staff = req.session["User"];
+    res.redirect('/staff/staffcourse')
 })
 
 router.get('/traineecourse', async (req, res) => {
