@@ -11,49 +11,45 @@
     </link>
     <title>Update Course page</title>
 </head>
-
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
+             <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
-                    height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a class="btn btn-light" href="/logout">Logout</a>
+            <a a href="/staffIndex" class="navbar-brand d-flex align-items-center">
+                <strong>Home</strong>
+            </a>
+            <a href="/staff/staffcourse" class="navbar-brand d-flex align-items-center">
+                <strong>Course</strong>
+            </a>
+            <a href="/staff/staffProfile" class="navbar-brand d-flex align-items-center">
+                <strong>Profile</strong>
+            </a>
+            <a href="/staff/about" class="navbar-brand d-flex align-items-center">
+                <strong>About</strong>
+            </a>
+            <a href="/logout">Logout</a>
         </div>
     </div>
-    <center>
-        <div class="staff_menu">
-            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                <ul>
-                    <li class="menubar"><a href="/staffIndex"><strong>Home</strong></a></li>
-                    <li class="menubar"><a href="/staff/staffcourse"><strong>Course</strong></a></li>
-                    <li class="menubar"><a href="/staff/about"><strong>About</strong></a></li>
-                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
-                </ul>
-            </nav>
-        </div>
-        <br>
-        </div>
         <hr>
-        <div>
-            <form action="updateCourse" method="post" border="1">
-                <input type="hidden" name="id" value="{{course._id}}">
-                Course's ID: <input type="text" name="txtId" value="{{course.courseId}}" id="">
-                <br><br>
-                Course's Name: <input type="text" name="txtCourseName" value="{{course.courseName}}" id="">
-                <br><br>
-                Time: <input type="date" name="txtTime" value="{{course.time}}" id="">
-                <br><br>
-                Mount of Trainees:
-                <input type="text" name="txtMount" value="{{course.mount}}">
-                <br><br>
-                <input class="btn btn-success" type="submit" value="Update Course">
-            </form>
-        </div>
-    </center>
+        <center>
+            <div>
+                <form action="updateCourse" method="post" border="1">
+                    <input type="hidden" name="id" value="{{course._id}}">
+                    Course's ID: <input type="text" name="txtId" value="{{course.courseId}}" id="">
+                    <br><br>
+                    Course's Name: <input type="text" name="txtCourseName" value="{{course.courseName}}" id="">
+                    <br><br>
+                    Time: <input type="date" name="txtTime" value="{{course.time}}" id="">
+                    <br><br>
+                    Mount of Trainees:
+                    <input type="text" name="txtMount" value="{{course.mount}}">
+                    <br><br>
+                    <input class="btn btn-success" type="submit" value="Update Course">
+                </form>
+            </div>
+        </center>
 </body>
 
 </html>

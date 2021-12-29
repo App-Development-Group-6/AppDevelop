@@ -60,7 +60,10 @@ router.post('/updateCourse', async (req, res) => {
     const staff = req.session["User"];
     res.redirect('/staff/staffcourse')
 })
-
+router.get('/staffProfile', async (req, res) => {
+    const staff = req.session["User"]
+    res.render('staffProfile', { dataInfo: staff })
+  })
 router.get('/traineecourse', async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);
