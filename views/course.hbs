@@ -37,41 +37,41 @@
         </div>
         <br>
         <div>
-            <a class="btn btn-primary" href="/trainer/addCourse"> Add new Course</a>
+            <h1>Welcome to Course page!!!</h1>
+            <h2>You're working with Role: {{dataInfo.role}} </h2>
         </div>
-        <br><br>
-        <div>
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Course's ID</th>
-                        <th scope="col">Name of Course</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Slot</th>
-                        <th scope="col">Actions</th>
-                        <th scope="col">Trainees</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each course}}
-                    <tr>
-                        <th scope="row">{{courseId}}</th>
-                        <td>{{courseName}}</td>
-                        <td>{{time}} </td>
-                        <td>{{mount}} </td>
-                        <td>
-                            <a class="btn btn-secondary" href="/trainer/editCourse?id={{_id}}">Edit</a>
-                            <a class="btn btn-danger" href="/trainer/deleteCourse?id={{_id}}"
-                                onclick="return confirm('Do you want to delete this Course?')">Delete</a>
-                        </td>
-                        <td><a class="btn btn-info" href="/trainer/traineecourse?courseId={{courseId}} "> See more </a>
-                        </td>
-
-                    </tr>
-                    {{/each}}
-                </tbody>
+        <br>
+        <div class="col-7">
+            <table class="table table-bordered" border="1">
+                <tr>
+                    <th>Course's ID</th>
+                    <th>Name of Course</th>
+                    <th>Date</th>
+                    <th>Slot</th>
+                    <th>Actions</th>
+                    <th>Trainees</th>
+                </tr>
+                {{#each course}}
+                <tr>
+                    <td>{{courseId}}</td>
+                    <td>{{courseName}}</td>
+                    <td>{{start}} <strong>To</strong> {{end}} </td>
+                    <td>{{mount}} </td>
+                    <td>
+                        <a class="btn btn-secondary" href="/trainer/editCourse?id={{_id}}">Edit</a>
+                        <a class="btn btn-danger" href="/trainer/deleteCourse?id={{_id}}"
+                            onclick="return confirm('Do you want to delete this Course?')">Delete</a>
+                    </td>
+                    <td><a class="btn btn-info" href="/trainer/traineecourse?courseId={{courseId}} "> See more </a>
+                    </td>
+                </tr>
+                {{/each}}
             </table>
         </div>
+        <div>
+            <a class="btn btn-primary" href="/trainer/addCourse"> Add new Course</a>
+        </div>
+        <hr>
     </center>
 </body>
 

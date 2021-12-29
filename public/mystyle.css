@@ -7,9 +7,12 @@ ul {
 li a, .menubar {
     display: inline-block;
     text-align: center;
-    padding: 14px 14px;
+    padding: 14px 30px;
     text-decoration: none;
-    margin-left: 120px;
+    margin-left: 60px;
+    font-size: 25px;
+    font-family: monospace;
+    text-transform:uppercase;
 }
 
 li a:hover {
@@ -35,4 +38,13 @@ li a:hover {
 
 .about {
     margin: 30px 80px 0 80px;
+}
+
+/* .formsearch {
+    padding-right: 1280px;
+
+} */
+
+h1 {
+    color:darkgreen;
 }

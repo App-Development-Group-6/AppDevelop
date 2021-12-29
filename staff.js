@@ -15,12 +15,14 @@ router.get('/addCourse', (req, res) => {
 router.post('/addCourse', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
-    const time = req.body.txtTime;
+    const start = req.body.txtTimeStart
+    const end = req.body.txtTimeEnd
     const mount = req.body.txtMount
     const ObjectToInsert = {
         courseId: id,
         courseName: name,
-        time: time,
+        start: start,
+        end: end,
         mount: mount
     }
     insertObject('Courses', ObjectToInsert)
@@ -54,9 +56,10 @@ router.post('/updateCourse', async (req, res) => {
     const id = req.body.id;
     const cid = req.body.txtId;
     const name = req.body.txtCourseName;
-    const time = req.body.txtTime;
+    const start = req.body.txtTimeStart;
+    const end = req.body.txtTimeEnd;
     const mounts = req.body.txtMount;
-    await updateCourse(id, cid, name, time, mounts)
+    await updateCourse(id, cid, name, start, end, mounts)
     const staff = req.session["User"];
     res.redirect('/staff/staffcourse')
 })
@@ -82,18 +85,23 @@ router.post('/searchCourse', async (req, res) => {
     res.render('index', { data: allCourse })
 })
 router.get('/assignTraineeCourse', async (req, res) => {
+    const cid = req.query.courseId
     const user = req.session["User"]
-    res.render('assignTraineeCourse', { dataInfo: user })
+    res.render('assignTraineeCourse', { dataInfo: user, datas:cid })
 })
 
 router.post('/assignTraineeCourse', async (req, res) => {
     const traineeid = req.body.txtTraineeId
     const grade = req.body.txtGrade
     const role = req.body.txtRole
-    const courseid = req.body.txtCourseId
+    const courseid = req.body.courseId
+    const dbo = await getDB();
+    const name = await dbo.collection("Users").findOne({"userId": traineeid});
     const trainee_course = {
         userId: traineeid,
         grade: grade,
+        name: name.fullName,
+        gender: name.gender,
         role:role,
         courseId: courseid
     }
@@ -107,22 +115,18 @@ router.post('/assignTraineeCourse', async (req, res) => {
         courses: courseid
     })
 })
-
-router.get('/assignTrainerCourse', async (req, res) => {
-    const course = req.query.courseId
-
-    const user = req.session["User"]
-    res.render('assignTrainerCourse', { dataInfo: user, datas:course})
-})
-
 router.post('/assignTrainerCourse', async (req, res) => {
-    const trainerid = req.body.txtTraineeId
+    const trainerid = req.body.txtTrainerId
     const role = req.body.txtRole
     const courseid = req.body.courseId
     console.log(courseid)
+    const dbo = await getDB();
+    const name = await dbo.collection("Users").findOne({"userId": traineeid});
     const trainee_course = {
         userId: trainerid,
         role:role,
+        name: name.fullName,
+        gender: name.gender,
         courseId: courseid
     }
     await insertObject("TrainerCourse", trainee_course)
@@ -134,6 +138,13 @@ router.post('/assignTrainerCourse', async (req, res) => {
         dataInfo: trainer,
         courses: courseid
     })
+})
+
+router.get('/assignTrainerCourse', async (req, res) => {
+    const course = req.query.courseId
+
+    const user = req.session["User"]
+    res.render('assignTrainerCourse', { dataInfo: user, datas:course})
 })
 
 router.get("/removeTrainerfromCourse", async (req,res)=>{

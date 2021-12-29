@@ -35,13 +35,13 @@
     </div>
     <center>
         <br><br>
-        <div>
+        <div class="col-8">
             <table class="table table-bordered">
                 <thead class="thead-light">
                 <tr>
                     <th>Course's ID</th>
                     <th>Name of Course</th>
-                    <th>Time</th>
+                    <th>Date</th>
                     <th>Slot</th>
                     <th>Trainers</th>
                     <th>Trainees</th>
@@ -52,7 +52,7 @@
 
                     <td>{{courseId}} </td>
                     <td>{{courseName}}</td>
-                    <td>{{time}} </td>
+                    <td>{{start}} <strong>To</strong> {{end}} </td>
                     <td>{{mount}} </td>
                     <td><a class="btn btn-info" href="/staff/staffTrainerCourse?courseId={{courseId}} "> See more </a> </td>
                     <td><a class="btn btn-info" href="/staff/staffTraineeCourse?courseId={{courseId}} "> See more </a> </td>
