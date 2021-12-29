@@ -81,50 +81,6 @@ router.post('/searchCourse', async (req, res) => {
 
     res.render('index', { data: allCourse })
 })
-router.post('/viewTrainer', async (req, res) => {
-
-})
-router.post('/editTrainer', async (req, res) => {
-
-})
-router.post('/updateTrainer', async (req, res) => {
-})
-router.get('/deleteTrainer', async (req, res) => {
-    const trainerID = req.query.trainerID;
-    await deleteTrainer(id);
-    res.redirect("/");
-})
-router.get('/addTrainer', (req, res) => {
-    res.render('addTrainer')
-})
-router.post('/addTrainer', async (req, res) => {
-    const name = req.body.txtName
-    const age = req.body.txtAge
-    const objectToInsert = {
-        trainerName: name,
-        age: age,
-    }
-    insertObject("Trainers", objectToInsert)
-    const allTrainer = await getAllTrainer();
-    res.render('Trainers', { data: allTrainer })
-
-})
-router.get('/addTrainee', (req, res) => {
-    res.render('addTrainee')
-})
-
-router.post('/addTrainee', async (req, res) => {
-    const name = req.body.txtName
-    const age = req.body.txtAge
-    const objectToInsert = {
-        traineeName: name,
-        ages: age,
-    }
-    insertObject("Trainees", objectToInsert)
-    const allTrainee = await getAllTrainee();
-    res.render('Trainees', { data: allTrainee })
-
-})
 router.get('/assignTraineeCourse', async (req, res) => {
     const user = req.session["User"]
     res.render('assignTraineeCourse', { dataInfo: user })

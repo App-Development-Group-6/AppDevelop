@@ -15,16 +15,6 @@
 </head>
 
 <body>
-    <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
-                <strong>FPT Software</strong>
-            </a>
-            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px"
-                    height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a class="btn btn-light" href="/logout">Logout</a>
-        </div>
     </div>
         <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
@@ -52,28 +42,28 @@
         <hr>
 
         <table class="table table-hover">
-        <thead>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">User ID</th> 
+                    <th scope="col">Role</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Fullname</th>
-                <th scope="col">User ID</th> 
-                <th scope="col">Role</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Number</th>
-                <th scope="col">Email</th>
+                <td>{{dataInfo._id}}</td>
+                <td>{{dataInfo.userName}}</td>
+                <td>{{dataInfo.fullName}}</td>
+                <td>{{dataInfo.userId}}</td>
+                <td>{{dataInfo.role}}</td>
+                <td>{{dataInfo.gender}}</td>
+                <td>{{dataInfo.number}}</td>
+                <td>{{dataInfo.email}}</td>
             </tr>
-        </thead>
-        <tr>
-            <td>{{dataInfo._id}}</td>
-            <td>{{dataInfo.userName}}</td>
-            <td>{{dataInfo.fullName}}</td>
-            <td>{{dataInfo.userId}}</td>
-            <td>{{dataInfo.role}}</td>
-            <td>{{dataInfo.gender}}</td>
-            <td>{{dataInfo.number}}</td>
-            <td>{{dataInfo.email}}</td>
-        </tr>
         </table>
     </center>
 </body>

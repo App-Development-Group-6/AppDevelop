@@ -34,10 +34,6 @@
         </div>
     </div>
     <center>
-        <div>
-            <a class="btn btn-primary" href="/staff/addCourse"> Add new Course</a>
-            <hr>
-        </div>
         <br><br>
         <div>
             <table class="table table-bordered">
@@ -49,6 +45,7 @@
                     <th>Slot</th>
                     <th>Trainers</th>
                     <th>Trainees</th>
+                    <th>Actions</th>
                 </tr>
                 {{#each course}}
                 <tr>
@@ -67,6 +64,10 @@
                 </tr>
                 {{/each}}
             </table>
+        </div>
+        <div>
+            <a class="btn btn-primary" href="/staff/addCourse"> Add new Course</a>
+            <hr>
         </div>
     </center>
 </body>

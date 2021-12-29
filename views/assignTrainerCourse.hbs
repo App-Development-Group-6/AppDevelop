@@ -15,24 +15,25 @@
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-            <a href="/" class="navbar-brand d-flex align-items-center">
+             <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="profile"><img src="images/account.png" alt="account icon" width="30px"
-                    height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a class="btn btn-light" href="/logout">Logout</a>
+            <a a href="/staffIndex" class="navbar-brand d-flex align-items-center">
+                <strong>Home</strong>
+            </a>
+            <a href="/staff/staffcourse" class="navbar-brand d-flex align-items-center">
+                <strong>Course</strong>
+            </a>
+            <a href="/staff/staffProfile" class="navbar-brand d-flex align-items-center">
+                <strong>Profile</strong>
+            </a>
+            <a href="/staff/about" class="navbar-brand d-flex align-items-center">
+                <strong>About</strong>
+            </a>
+            <a href="/logout">Logout</a>
         </div>
     </div>
     <center>
-        <div class="staff_menu">
-            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                <ul>
-                    <li class="menubar"><a href="/staffIndex"><strong>Home</strong></a></li>
-                    <li class="menubar"><a href="/staff/staffcourse"><strong>Course</strong></a></li>
-                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
-                </ul>
-            </nav>
-        </div>
         <hr>
         <h1>Enter correctly information</h1>
         <form method="post" action="assignTrainerCourse">
