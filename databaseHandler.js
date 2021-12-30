@@ -156,7 +156,12 @@ async function getPassFailTrainee(cid, grade){
 
 async function removeTrainerfromCourse(id){
     const dbo = await getDB();
-    await dbo.collection("TrainerCourse").deleteOne({"_id":ObjectId(id)});
+    await dbo.collection("TrainerCourse").deleteOne({"_id" : ObjectId(id)});
+}
+async function searchCourse(searchInput) {
+    const dbo = await getDB();
+    const course = await dbo.collection("Courses").find({ courseip : searchInput }).toArray();
+    return course;
 }
 
-module.exports = {deleteObject, getDB,getTrainerandCourseId,removeTrainerfromCourse, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }
+module.exports = {deleteObject,searchCourse, getDB,getTrainerandCourseId,removeTrainerfromCourse, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }

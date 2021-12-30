@@ -1,7 +1,7 @@
 const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
-const { insertObject, ObjectId, deleteCourse,updateCourse, getAllTrainer, getAllTrainee, getAllCourse, getDB,getCourseById, getTraineeandCourseId, getTrainerandCourseId, removeTrainerfromCourse } = require('./databaseHandler')
+const { insertObject, ObjectId,searchCourse, deleteCourse,updateCourse, getAllTrainer, getAllTrainee, getAllCourse, getDB,getCourseById, getTraineeandCourseId, getTrainerandCourseId, removeTrainerfromCourse } = require('./databaseHandler')
 const router = express.Router()
 router.use(express.static('public'))
 
@@ -76,10 +76,8 @@ router.get('/traineecourse', async (req, res) => {
 })
 router.post('/searchCourse', async (req, res) => {
     const searchInput = req.body.txtSearch;
-    const dbo = await getDB()
-    const allCourse = await dbo.collection("courses").find({ name: searchInput }).toArray();
-
-    res.render('index', { data: allCourse })
+    const Course = await searchCourse(searchInput);
+    res.render('staffCourse',{data:Course})
 })
 router.get('/assignTraineeCourse', async (req, res) => {
     const user = req.session["User"]
