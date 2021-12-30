@@ -1,11 +1,11 @@
 const async = require('hbs/lib/async');
 const { MongoClient, ObjectId } = require('mongodb');
 
-const URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test'
-const DATABASE_NAME = 'myDatabase'
+// const URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test'
+// const DATABASE_NAME = 'myDatabase'
 
-// const URL = 'mongodb://localhost:27017'
-// const DATABASE_NAME = 'AppDev'
+const URL = 'mongodb://localhost:27017'
+const DATABASE_NAME = 'AppDev'
 
 async function getDB() {
     const client = await MongoClient.connect(URL);
@@ -163,7 +163,8 @@ async function removeTrainerfromCourse(id){
 }
 async function searchCourse(searchInput) {
     const dbo = await getDB();
-    const AllCourse = await dbo.collection("Courses").find({ courseName : new RegExp(searchInput,'i') }).toArray();
+    const AllCourse = await dbo.collection("Courses").find({ "courseName" : new RegExp(searchInput,'i')}).toArray();
+    console.log(AllCourse)
     return AllCourse;
 }
 

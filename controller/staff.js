@@ -1,9 +1,9 @@
 const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
-const { insertObject, ObjectId, searchCourse, deleteCourse, updateCourse, getAllTrainer, getAllTrainee, getAllCourse, getDB, getCourseById, getTraineeandCourseId, getTrainerandCourseId, removeTrainerfromCourse } = require('./databaseHandler')
+const { insertObject, ObjectId, searchCourse, deleteCourse, updateCourse, getAllTrainer, getAllTrainee, getAllCourse, getDB, getCourseById, getTraineeandCourseId, getTrainerandCourseId, removeTrainerfromCourse } = require('../model/databaseHandler')
 const router = express.Router()
-const { requireStaff } = require('./projectLibrary')
+const { requireStaff } = require('../projectLibrary')
 router.use(express.static('public'))
 
 router.get('/', async (req, res) => {
@@ -81,7 +81,8 @@ router.get('/traineecourse', async (req, res) => {
 router.post('/searchCourse', async (req, res) => {
     const searchInput = req.body.txtSearch;
     const Course = await searchCourse(searchInput);
-    res.render('staffCourse', { data: Course })
+    const trainer = req.session["User"]
+    res.render('staffCourse', { course: Course, dataInfo: trainer })
 })
 router.get('/assignTraineeCourse',requireStaff, async (req, res) => {
     const cid = req.query.courseId

@@ -1,7 +1,7 @@
 const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
-const { requireTrainer } = require('./projectLibrary')
+const { requireTrainer, requiresLogin } = require('../projectLibrary')
 const {
     getPassFailTrainee,
     ObjectId,
@@ -15,26 +15,26 @@ const {
     getTraineeandCourseId,
     updateGrade,
     getDB
-} = require('./databaseHandler')
+} = require('../model/databaseHandler')
 const router = express.Router()
 
 router.use(express.static('public'))
 
-router.get('/', async (req, res) => {
+router.get('/', requiresLogin, async (req, res) => {
     const trainer = req.session["User"];
     res.render('trainerIndex', {
         dataInfo: trainer
     })
 })
 
-router.get('/addCourse',requireTrainer, async (req, res) => {
+router.get('/addCourse',requiresLogin, requireTrainer, async (req, res) => {
     const trainer = req.session["User"];
     res.render('addCourse', {
         dataInfo: trainer
     })
 })
 
-router.post('/addCourse',requireTrainer, async (req, res) => {
+router.post('/addCourse',requiresLogin, requireTrainer, async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
     const start = req.body.txtTimeStart
@@ -51,7 +51,7 @@ router.post('/addCourse',requireTrainer, async (req, res) => {
     res.redirect('/trainer/course')
 })
 
-router.get('/course', async (req, res) => {
+router.get('/course',requiresLogin, async (req, res) => {
     const courses = await getAllCourse();
     const trainer = req.session["User"];
     res.render('course', {
@@ -60,13 +60,13 @@ router.get('/course', async (req, res) => {
     })
 })
 
-router.get('/deleteCourse',requireTrainer, async (req, res) => {
+router.get('/deleteCourse',requiresLogin, requireTrainer, async (req, res) => {
     const idInput = req.query.id;
     await deleteCourse(idInput)
     res.redirect('/trainer/course')
 })
 
-router.get('/editCourse',requireTrainer, async (req, res) => {
+router.get('/editCourse',requiresLogin, requireTrainer, async (req, res) => {
     const idInput = req.query.id;
     const findcourse = await getCourseById(idInput)
     const trainer = req.session["User"];
@@ -76,7 +76,7 @@ router.get('/editCourse',requireTrainer, async (req, res) => {
     })
 })
 
-router.post('/updateCourse',requireTrainer, async (req, res) => {
+router.post('/updateCourse',requiresLogin, requireTrainer, async (req, res) => {
     const id = req.body.id;
     const cid = req.body.txtId;
     const name = req.body.txtCourseName;
@@ -87,7 +87,7 @@ router.post('/updateCourse',requireTrainer, async (req, res) => {
     res.redirect('/trainer/course')
 })
 
-router.get('/traineecourse',requireTrainer, async (req, res) => {
+router.get('/traineecourse',requiresLogin, requireTrainer, async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);
     const trainer = req.session["User"];
@@ -98,7 +98,7 @@ router.get('/traineecourse',requireTrainer, async (req, res) => {
     })
 })
 
-router.get('/traineeDetail',requireTrainer, async (req, res) => {
+router.get('/traineeDetail',requiresLogin, requireTrainer, async (req, res) => {
     const trainer = req.session["User"];
     const userid = req.query.userId;
     const courseid = req.query.courseId;
@@ -112,7 +112,7 @@ router.get('/traineeDetail',requireTrainer, async (req, res) => {
     })
 })
 
-router.get('/takeMark',requireTrainer, async (req, res) => {
+router.get('/takeMark',requiresLogin, requireTrainer, async (req, res) => {
     const idInput = req.query.id;
     const db = await getDB();
     const trainee = await db.collection("TraineeCourse").findOne({ "_id": ObjectId(idInput) })
@@ -124,7 +124,7 @@ router.get('/takeMark',requireTrainer, async (req, res) => {
         })
 })
 
-router.post('/updateMark',requireTrainer, async (req, res) => {
+router.post('/updateMark',requiresLogin, requireTrainer, async (req, res) => {
     const traineeid = req.body.id
     const grade = req.body.txtGrade
     const cid = req.body.courseId
@@ -139,7 +139,7 @@ router.post('/updateMark',requireTrainer, async (req, res) => {
     })
 })
 
-router.post('/searchmark',requireTrainer, async (req, res) => {
+router.post('/searchmark',requiresLogin, requireTrainer, async (req, res) => {
     const cid = req.body.courseId;
     const grade = req.body.txtGrade;
     console.log(cid)

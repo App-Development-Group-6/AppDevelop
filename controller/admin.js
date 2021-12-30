@@ -1,6 +1,6 @@
 const express = require('express')
-const { insertObject, getAllUser, updateDocument, deleteObject, getDocumentById, getAllStaff, getAllTrainer, getAllTrainee, userInfo } = require('./databaseHandler')
-const { requiresLogin } = require('./projectLibrary')
+const { insertObject, getAllUser, updateDocument, deleteObject, getDocumentById, getAllStaff, getAllTrainer, getAllTrainee, userInfo } = require('../model/databaseHandler')
+const { requiresLogin } = require('../projectLibrary')
 const router = express.Router()
 
 router.get('/', requiresLogin, (req,res)=>{

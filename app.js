@@ -1,6 +1,6 @@
 const express = require('express')
 const session = require('express-session')
-const { checkUserRole, userInfo, getAllUser, insertObject } = require('./databaseHandler')
+const { checkUserRole, userInfo, getAllUser, insertObject } = require('./model/databaseHandler')
 const { requiresLogin } = require('./projectLibrary')
 
 const app = express()
@@ -86,13 +86,13 @@ app.get('/logout', function (req, res, next) {
   }
 })
 
-const adminController = require('./admin')
+const adminController = require('./controller/admin')
 app.use('/admin', adminController)
 
-const staffController = require('./staff')
+const staffController = require('./controller/staff')
 app.use('/staff', staffController)
 
-const trainerController = require('./trainer')
+const trainerController = require('./controller/trainer')
 const async = require('hbs/lib/async')
 app.use('/trainer', trainerController)
 
