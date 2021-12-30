@@ -163,8 +163,8 @@ async function removeTrainerfromCourse(id){
 }
 async function searchCourse(searchInput) {
     const dbo = await getDB();
-    const course = await dbo.collection("Courses").find({ courseip : searchInput }).toArray();
-    return course;
+    const AllCourse = await dbo.collection("Courses").find({ courseName : new RegExp(searchInput,'i') }).toArray();
+    return AllCourse;
 }
 
 module.exports = {deleteObject,searchCourse, getDB,getTrainerandCourseId,removeTrainerfromCourse, ObjectId, checkUserRole, getPassFailTrainee, getAllStaff, getAllTrainer, getAllTrainee, updateDocument, getDocumentById, updateGrade, getGradeByUserId, insertObject, getAllUser, getAllCourse, getUserByUserId, deleteCourse, getCourseById, updateCourse, userInfo, getAllTrainee, getTraineeandCourseId }

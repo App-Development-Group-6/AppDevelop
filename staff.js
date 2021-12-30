@@ -10,10 +10,10 @@ router.get('/', async (req, res) => {
     const allCourse = await getAllCourse();
     res.render('staffIndex', { data: allCourse })
 })
-router.get('/addCourse', (req, res) => {
-    res.render('addCourse')
+router.get('/addCourseS', (req, res) => {
+    res.render('addCourseS')
 })
-router.post('/addCourse', async (req, res) => {
+router.post('/addCourseS', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
     const start = req.body.txtTimeStart
