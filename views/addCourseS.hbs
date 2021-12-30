@@ -18,10 +18,10 @@
              <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
-            <a a href="/trainerIndex" class="navbar-brand d-flex align-items-center">
+            <a a href="/staffIndex" class="navbar-brand d-flex align-items-center">
                 <strong>Home</strong>
             </a>
-            <a href="/trainer/course" class="navbar-brand d-flex align-items-center">
+            <a href="/staff/staffcourse" class="navbar-brand d-flex align-items-center">
                 <strong>Course</strong>
             </a>
             <a href="/profile" class="navbar-brand d-flex align-items-center">
@@ -31,14 +31,14 @@
                 <strong>About</strong>
             </a>
           <a class="navbar-brand d-flex align-items-center" href="/logout"><img src="images/account.png" alt="account icon" width="25px"
-                    height="25px">{{dataInfo.role}} - {{dataInfo.userName}} <strong>- Logout</strong></a>
+                    height="25px"> {{dataInfo.role}} - {{dataInfo.userName}} <strong>- Logout</strong></a>
         </div>
     </div>
     <center>
         <br>
         <h1>Enter Course's information</h1>
         <br>
-        <form method="post" action="addCourse">
+        <form method="post" action="addCourseS">
             Course's ID: <input type="text" name="txtId" id="">
             <br><br>
             Course's Name: <input type="text" name="txtCourseName" id="">

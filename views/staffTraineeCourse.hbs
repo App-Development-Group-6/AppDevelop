@@ -40,8 +40,6 @@
             </h1>
             <br>
             {{#if data}}
-            <a class="btn btn-primary" href="/staff/assignTraineeCourse?courseId={{courses}} "> Add Trainee to this
-                course</a>
             <br>
             <hr>
         </div>
@@ -60,6 +58,9 @@
                 </tr>
                 {{/each}}
             </table>
+            <hr>
+            <a class="btn btn-primary" href="/staff/assignTraineeCourse?courseId={{courses}} "> Add Trainee to this
+                course</a>
         </div>
         {{else}}
         <h2>There's no Trainee in this course!!!</h2>

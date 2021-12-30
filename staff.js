@@ -9,10 +9,10 @@ router.get('/', async (req, res) => {
     const allCourse = await getAllCourse();
     res.render('staffIndex', { data: allCourse })
 })
-router.get('/addCourse', (req, res) => {
-    res.render('addCourse')
+router.get('/addCourseS', (req, res) => {
+    res.render('addCourseS')
 })
-router.post('/addCourse', async (req, res) => {
+router.post('/addCourseS', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
     const start = req.body.txtTimeStart
@@ -63,10 +63,6 @@ router.post('/updateCourse', async (req, res) => {
     const staff = req.session["User"];
     res.redirect('/staff/staffcourse')
 })
-router.get('/staffProfile', async (req, res) => {
-    const staff = req.session["User"]
-    res.render('staffProfile', { dataInfo: staff })
-  })
 router.get('/traineecourse', async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);
@@ -79,8 +75,8 @@ router.get('/traineecourse', async (req, res) => {
 })
 router.post('/searchCourse', async (req, res) => {
     const searchInput = req.body.txtSearch;
-    const Course = await searchCourse(searchInput);
-    res.render('staffCourse',{data:Course})
+    const AllCourse = await searchCourse(searchInput);
+    res.render('staffCourse',{data:AllCourse})
 })
 router.get('/assignTraineeCourse', async (req, res) => {
     const cid = req.query.courseId
