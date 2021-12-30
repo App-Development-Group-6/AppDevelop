@@ -1,11 +1,11 @@
 const async = require('hbs/lib/async');
 const { MongoClient, ObjectId } = require('mongodb');
 
-// const URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test'
-// const DATABASE_NAME = 'myDatabase'
+const URL = 'mongodb+srv://atn:atn123456@cluster0.ajh2g.mongodb.net/test'
+const DATABASE_NAME = 'myDatabase'
 
-const URL = 'mongodb://localhost:27017'
-const DATABASE_NAME = 'AppDev'
+//const URL = 'mongodb://localhost:27017'
+//const DATABASE_NAME = 'AppDev'
 
 async function getDB() {
     const client = await MongoClient.connect(URL);
@@ -87,7 +87,7 @@ async function getCourseById(idInput) {
     return course;
 }
 
-async function updateCourse(idInput, cid, start, end, nip, mip) {
+async function updateCourse(idInput, cid, nip , start, end, mip) {
     const dbo = await getDB();
     await dbo.collection("Courses").updateOne({ "_id": ObjectId(idInput) }, { $set: { courseId: cid, courseName: nip, start: start,end: end, mount: mip } });
 }
