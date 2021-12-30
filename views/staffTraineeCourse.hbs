@@ -15,7 +15,7 @@
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-             <a href="/" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
             <a a href="/staffIndex" class="navbar-brand d-flex align-items-center">
@@ -39,24 +39,33 @@
                 Trainee(s) of this course: {{courses}}
             </h1>
             <br>
-            <a class="btn btn-primary" href="/staff/assignTraineeCourse"> Add Trainee to this course</a>
+            {{#if data}}
+            <a class="btn btn-primary" href="/staff/assignTraineeCourse?courseId={{courses}} "> Add Trainee to this
+                course</a>
             <br>
             <hr>
         </div>
         <div>
             <table border="1" style="text-align: center;">
                 <tr>
-                    <th> ID</th>
-                    <th>Role</th>
+                    <th>Trainee's ID</th>
+                    <th> Full Name</th>
+                    <th> Gender</th>
                 </tr>
                 {{#each data}}
                 <tr>
                     <td> {{userId}} </td>
-                    <td> {{role}} </td>
+                    <td> {{name}} </td>
+                    <td> {{gender}} </td>
                 </tr>
                 {{/each}}
             </table>
         </div>
+        {{else}}
+        <h2>There's no Trainee in this course!!!</h2>
+        <a class="btn btn-primary" href="/staff/assignTraineeCourse?courseId={{courses}} "> Add Trainee to this
+            course</a>
+        {{/if}}
     </center>
 </body>
 

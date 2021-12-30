@@ -37,40 +37,51 @@
         </div>
         <br>
         <div>
+            {{#if data}}
             <h1>
                 Trainee(s) of this course: {{courses}}
             </h1>
         </div>
-        <div>
-            <div>
-                <form action="/trainer/searchmark " method="post">
-                    <input type="hidden" name="courseId" id="" value="{{courses}}">
-                    <select name="txtGrade" id="">
-                        <option>Passed</option>
-                        <option>Failed</option>
-                    </select>
+        {{!-- <div>
+            <form action="/trainer/searchmark " method="post">
+                <input type="hidden" name="courseId" id="" value="{{courses}}">
+                <div class="form-group formsearch">
+                    <label for="txtGrade"> View Trainee(s) by Grade </label>
+                    <div class="col-1 md-8">
+                        <select class="form-select" name="txtGrade" class="form-control" id="">
+                            <option>Passed</option>
+                            <option>Failed</option>
+                        </select>
+                    </div>
                     <input class="btn btn-primary" type="submit" value="Submit">
-                </form>
-            </div>
-            <br>
-            <table class="table table-bordered">
-                <tr>
-                    <th><strong>Trainee's ID</strong></th>
-                    <th><strong>Option</strong></th>
-                </tr>
-                {{#each data}}
-                <tr>
-                    <td><strong> {{userId}} </strong> </td>
-                    <td>
-                        <a class="btn btn-info" href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} ">
-                            Detail</a>
-                        <a class="btn btn-primary" href="/trainer/takeMark?id={{_id}} "> Take Mark</a>
-                    </td>
-                </tr>
-                {{/each}}
-            </table>
+            </form>
+        </div> --}}
+        <br>
+        <table class="table table-bordered">
+            <tr>
+                <th><strong>Trainee's ID</strong></th>
+                <th><strong>Trainee's Name</strong></th>
+                <th><strong>Grade</strong></th>
+                <th><strong>Option</strong></th>
+            </tr>
+            {{#each data}}
+            <tr>
+                <td><strong> {{userId}} </strong> </td>
+                <td><strong> {{name}} </strong> </td>
+                <td><strong> {{grade}} </strong> </td>
+                <td>
+                    <a class="btn btn-info" href="/trainer/traineeDetail?userId={{userId}}&courseId={{courseId}} ">
+                        Detail</a>
+                    <a class="btn btn-primary" href="/trainer/takeMark?id={{_id}} "> Take Mark</a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+        {{else}}
+        <h1>This Course doesn't contain any Trainee(s)!!!</h1>
+        <h2>Contact to Training Staff for adding Trainee!!!</h2>
+        {{/if}}
         </div>
     </center>
 </body>
-
 </html>

@@ -35,17 +35,24 @@
         </div>
         <br>
         <div>
-            <form action="updateMark" border="1" method="post">
-                <h1>Take mark for Trainee: {{data.userId}} </h1>
-                <input type="hidden" name="id" value="{{data._id}}" id="">
-                Grade:
-                <select name="txtGrade" id="" value="{{data.grade}} ">
-                    <option>Passed</option>
-                    <option>Failed</option>
-                </select>
-                <br><br>
-                <input class="btn btn-success" type="submit" value="Grade">
-            </form>
+            <h1>Take mark for Trainee: </h1>
+            {{#if data.grade}}
+            <h2>{{data.userId}} - {{data.name}} with Current mark: <i style="color:darkmagenta">{{data.grade}}</i> </h2>
+            {{else}}
+            <h2>{{data.userId}} - {{data.name}} with Current mark: None </h2>
+            {{/if}}
+            <br>
+            <div>
+                <form action="updateMark" border="1" method="post">
+                    <input type="hidden" name="id" value="{{data._id}}" id="">
+                    <input type="hidden" name="courseId" value="{{data.courseId}}" id="">
+                    <h2>Take (new) grade:</h2>
+                    <select name="txtGrade" id="" value="{{data.grade}} ">
+                        <option class="alert alert-danger">Passed</option>
+                        <option class="alert alert-danger">Failed</option>
+                    </select> <input class="btn btn-success" type="submit" value="Grade">
+                </form>
+            </div>
         </div>
     </center>
 </body>

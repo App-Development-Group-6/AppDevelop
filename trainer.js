@@ -36,12 +36,14 @@ router.get('/addCourse', async (req, res) => {
 router.post('/addCourse', async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
-    const time = req.body.txtTime;
+    const start = req.body.txtTimeStart
+    const end = req.body.txtTimeEnd
     const mount = req.body.txtMount
     const ObjectToInsert = {
         courseId: id,
         courseName: name,
-        time: time,
+        start: start,
+        end: end,
         mount: mount
     }
     insertObject('Courses', ObjectToInsert)
@@ -77,10 +79,10 @@ router.post('/updateCourse', async (req, res) => {
     const id = req.body.id;
     const cid = req.body.txtId;
     const name = req.body.txtCourseName;
-    const time = req.body.txtTime;
+    const start = req.body.txtTimeStart;
+    const end = req.body.txtTimeEnd;
     const mounts = req.body.txtMount;
-    await updateCourse(id, cid, name, time, mounts)
-    const trainer = req.session["User"];
+    await updateCourse(id, cid, name, start, end, mounts)
     res.redirect('/trainer/course')
 })
 
@@ -123,20 +125,31 @@ router.get('/takeMark', async (req, res) => {
 
 router.post('/updateMark', async (req, res) => {
     const traineeid = req.body.id
-
     const grade = req.body.txtGrade
+    const cid = req.body.courseId
     await updateGrade(traineeid, grade)
-    res.redirect('/trainer/course')
+    
+    const trainee = await getTraineeandCourseId(cid);
+    const trainer = req.session["User"];
+    res.render('traineecourse', {
+        data: trainee,
+        dataInfo: trainer,
+        courses: cid
+    })
 })
 
 router.post('/searchmark', async (req, res) => {
-    const course = req.body.courseId;
+    const cid = req.body.courseId;
     const grade = req.body.txtGrade;
-    console.log(course)
+    console.log(cid)
     console.log(grade)
-    const result = await getPassFailTrainee(course, grade);
+    const result = await getPassFailTrainee(cid, grade);
     const trainer = req.session["User"];
-    res.render('traineecourse', { data: result, dataInfo: trainer })
+    res.render('traineecourse', {
+        data: result,
+        dataInfo: trainer,
+        courses: cid
+    })
 })
 
 router.get('/about',(req,res)=>{
