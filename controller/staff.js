@@ -81,8 +81,8 @@ router.get('/traineecourse', async (req, res) => {
 router.post('/searchCourse', async (req, res) => {
     const searchInput = req.body.txtSearch;
     const Course = await searchCourse(searchInput);
-    const trainer = req.session["User"]
-    res.render('staffCourse', { course: Course, dataInfo: trainer })
+    const staff = req.session["User"]
+    res.render('staffCourse', { course: Course, dataInfo: staff })
 })
 router.get('/assignTraineeCourse',requireStaff, async (req, res) => {
     const cid = req.query.courseId
