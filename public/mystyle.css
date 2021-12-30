@@ -21,7 +21,11 @@ li a:hover {
 
 .account_image {
     background-color: cornsilk;
-    margin-left: 900px;
+
+}
+
+.account_image a:hover {
+    background-color: aqua;
 }
 
 .content-table-profile, th {
@@ -47,4 +51,8 @@ li a:hover {
 
 h1 {
     color:darkgreen;
+}
+
+.nav-menu a:hover {
+    background-color: rgb(255, 187, 0);
 }

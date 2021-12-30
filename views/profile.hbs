@@ -9,34 +9,35 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="mystyle.css">
     </link>
-    <link rel="stylesheet" href="mystyle.css">
-    </link>
     <title>Profile Page</title>
 </head>
 
 <body>
     <center>
         <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-             <a href="/" class="navbar-brand d-flex align-items-center">
-                <strong>FPT Software</strong>
-            </a>
-            <a a href="/trainerIndex" class="navbar-brand d-flex align-items-center">
-                <strong>Home</strong>
-            </a>
-            <a href="/trainer/course" class="navbar-brand d-flex align-items-center">
-                <strong>Course</strong>
-            </a>
-            <a href="/profile" class="navbar-brand d-flex align-items-center">
-                <strong>Profile</strong>
-            </a>
-            <a href="/trainer/about" class="navbar-brand d-flex align-items-center">
-                <strong>About</strong>
-            </a>
-          <a class="navbar-brand d-flex align-items-center" href="/logout"><img src="images/account.png" alt="account icon" width="25px"
-                    height="25px">{{dataInfo.role}} - {{dataInfo.userName}} <strong>- Logout</strong></a>
+            <div class="container d-flex justify-content-between nav-menu">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
+                    <strong>FPT Software</strong>
+                </a>
+                <a a href="/trainerIndex" class="navbar-brand d-flex align-items-center">
+                    <strong>Home</strong>
+                </a>
+                <a href="/trainer/course" class="navbar-brand d-flex align-items-center">
+                    <strong>Course</strong>
+                </a>
+                <a href="/profile" class="navbar-brand d-flex align-items-center">
+                    <strong>Profile</strong>
+                </a>
+                <a href="/trainer/about" class="navbar-brand d-flex align-items-center">
+                    <strong>About</strong>
+                </a>
+                <a class="text-decoration-none account_image " href="/profile"><img class="" src="images/account.png"
+                        alt="account icon" width="25px" height="25px">{{dataInfo.role}} - {{dataInfo.userName}}</a>
+                <a class="navbar-brand d-flex align-items-center btn btn-danger" href="/logout"><strong>
+                        Logout</strong></a>
+            </div>
         </div>
-    </div>
         <br>
         <h1>Welcom to Profile Page</h1>
         <table border="1">

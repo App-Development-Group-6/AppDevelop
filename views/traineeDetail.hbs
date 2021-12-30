@@ -14,27 +14,30 @@
 
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
+        <div class="container d-flex justify-content-between nav-menu">
             <a href="/" class="navbar-brand d-flex align-items-center">
                 <img src="images/fpt.png" alt="FPT Brand" width="30px" height="30px">
                 <strong>FPT Software</strong>
             </a>
-            <a class="account_image" href="/profile"><img src="images/account.png" alt="account icon" width="30px"
-                    height="30px"> {{dataInfo.role}} - {{dataInfo.userName}} </a>
-            <a class="btn btn-light" href="/logout">Logout</a>
+            <a a href="/trainerIndex" class="navbar-brand d-flex align-items-center">
+                <strong>Home</strong>
+            </a>
+            <a href="/trainer/course" class="navbar-brand d-flex align-items-center">
+                <strong>Course</strong>
+            </a>
+            <a href="/profile" class="navbar-brand d-flex align-items-center">
+                <strong>Profile</strong>
+            </a>
+            <a href="/trainer/about" class="navbar-brand d-flex align-items-center">
+                <strong>About</strong>
+            </a>
+            <a class="text-decoration-none account_image " href="/profile"><img class="" src="images/account.png"
+                    alt="account icon" width="25px" height="25px">{{dataInfo.role}} - {{dataInfo.userName}}</a>
+            <a class="navbar-brand d-flex align-items-center btn btn-danger" href="/logout"><strong>
+                    Logout</strong></a>
         </div>
     </div>
     <center>
-        <div class="trainer_menu">
-            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                <ul>
-                    <li class="menubar"><a href="/trainerIndex"><strong>Home</strong></a></li>
-                    <li class="menubar"><a href="/trainer/course"><strong>Course</strong></a></li>
-                    <li class="menubar"><a href="/trainer/about"><strong>About</strong></a></li>
-                    <li class="menubar"><a href="/profile"><strong>Profile</strong></a></li>
-                </ul>
-            </nav>
-        </div>
         <br>
         <div>
             <h1>
@@ -42,7 +45,7 @@
             </h1>
         </div>
         <div>
-            <table  border="1">
+            <table border="1">
                 <tr class="content-table-profile">
                     <th>Full Name</th>
                     <th>ID</th>

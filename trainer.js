@@ -1,6 +1,7 @@
 const { ObjectID } = require('bson')
 const express = require('express')
 const async = require('hbs/lib/async')
+const { requireTrainer } = require('./projectLibrary')
 const {
     getPassFailTrainee,
     ObjectId,
@@ -26,14 +27,14 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.get('/addCourse', async (req, res) => {
+router.get('/addCourse',requireTrainer, async (req, res) => {
     const trainer = req.session["User"];
     res.render('addCourse', {
         dataInfo: trainer
     })
 })
 
-router.post('/addCourse', async (req, res) => {
+router.post('/addCourse',requireTrainer, async (req, res) => {
     const id = req.body.txtId
     const name = req.body.txtCourseName
     const start = req.body.txtTimeStart
@@ -59,13 +60,13 @@ router.get('/course', async (req, res) => {
     })
 })
 
-router.get('/deleteCourse', async (req, res) => {
+router.get('/deleteCourse',requireTrainer, async (req, res) => {
     const idInput = req.query.id;
     await deleteCourse(idInput)
     res.redirect('/trainer/course')
 })
 
-router.get('/editCourse', async (req, res) => {
+router.get('/editCourse',requireTrainer, async (req, res) => {
     const idInput = req.query.id;
     const findcourse = await getCourseById(idInput)
     const trainer = req.session["User"];
@@ -75,7 +76,7 @@ router.get('/editCourse', async (req, res) => {
     })
 })
 
-router.post('/updateCourse', async (req, res) => {
+router.post('/updateCourse',requireTrainer, async (req, res) => {
     const id = req.body.id;
     const cid = req.body.txtId;
     const name = req.body.txtCourseName;
@@ -86,7 +87,7 @@ router.post('/updateCourse', async (req, res) => {
     res.redirect('/trainer/course')
 })
 
-router.get('/traineecourse', async (req, res) => {
+router.get('/traineecourse',requireTrainer, async (req, res) => {
     const cid = req.query.courseId;
     const trainee = await getTraineeandCourseId(cid);
     const trainer = req.session["User"];
@@ -97,7 +98,7 @@ router.get('/traineecourse', async (req, res) => {
     })
 })
 
-router.get('/traineeDetail', async (req, res) => {
+router.get('/traineeDetail',requireTrainer, async (req, res) => {
     const trainer = req.session["User"];
     const userid = req.query.userId;
     const courseid = req.query.courseId;
@@ -111,7 +112,7 @@ router.get('/traineeDetail', async (req, res) => {
     })
 })
 
-router.get('/takeMark', async (req, res) => {
+router.get('/takeMark',requireTrainer, async (req, res) => {
     const idInput = req.query.id;
     const db = await getDB();
     const trainee = await db.collection("TraineeCourse").findOne({ "_id": ObjectId(idInput) })
@@ -123,7 +124,7 @@ router.get('/takeMark', async (req, res) => {
         })
 })
 
-router.post('/updateMark', async (req, res) => {
+router.post('/updateMark',requireTrainer, async (req, res) => {
     const traineeid = req.body.id
     const grade = req.body.txtGrade
     const cid = req.body.courseId
@@ -138,7 +139,7 @@ router.post('/updateMark', async (req, res) => {
     })
 })
 
-router.post('/searchmark', async (req, res) => {
+router.post('/searchmark',requireTrainer, async (req, res) => {
     const cid = req.body.courseId;
     const grade = req.body.txtGrade;
     console.log(cid)

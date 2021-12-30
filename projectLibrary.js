@@ -7,4 +7,22 @@ function requiresLogin(req,res,next){
         res.redirect('/login')
     }
 }
-module.exports = {requiresLogin}
+
+function requireTrainer(req,res,next){
+    trainer = req.session["User"]
+    if(trainer.role == "Trainer"){
+        return next()
+    }else{
+        res.redirect('/notice')
+    }
+}
+
+function requireStaff(req,res,next){
+    trainer = req.session["User"]
+    if(trainer.role == "Staff"){
+        return next()
+    }else{
+        res.redirect('/notice')
+    }
+}
+module.exports = {requiresLogin, requireTrainer, requireStaff}

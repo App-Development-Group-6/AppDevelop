@@ -69,6 +69,10 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
+app.get('/notice', (req, res) => {
+  res.render('notice')
+})
+
 app.get('/logout', function (req, res, next) {
   if (req.session["User"]) {
     // delete session object
