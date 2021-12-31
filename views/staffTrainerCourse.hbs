@@ -43,13 +43,15 @@
             <div>
                 <table border="1" style="text-align: center;">
                     <tr>
-                        <th>ID</th>
+                        <th>Trainer's ID</th>
+                        <th>Trainer's Name</th>
                         <th>Role</th>
                         <th>Action</th>
                     </tr>
                     {{#each data}}
                     <tr>
                         <td> {{userId}} </td>
+                        <td> {{name}} </td>
                         <td> {{role}} </td>
                         <td> <a class="btn btn-danger" href="/staff/removeTrainerfromCourse?id={{_id}}&courseId={{courseId}}"> Remove this
                                 Trainer</a> </td>

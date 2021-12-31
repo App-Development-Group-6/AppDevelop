@@ -15,7 +15,7 @@
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-             <a href="/" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
             <a a href="/staffIndex" class="navbar-brand d-flex align-items-center">
@@ -30,15 +30,17 @@
             <a href="/staff/about" class="navbar-brand d-flex align-items-center">
                 <strong>About</strong>
             </a>
-          <a class="navbar-brand d-flex align-items-center" href="/logout"><img src="images/account.png" alt="account icon" width="25px"
-                    height="25px">{{dataInfo.role}} - {{dataInfo.userName}} <strong>- Logout</strong></a>        </div>
+            <a class="navbar-brand d-flex align-items-center" href="/logout"><img src="images/account.png"
+                    alt="account icon" width="25px" height="25px">{{dataInfo.role}} - {{dataInfo.userName}} <strong>-
+                    Logout</strong></a>
+        </div>
     </div>
     <br><br>
     <div>
         <form action="/staff/searchCourse" method="post">
-        Name: <input type="text" name="txtSearch">
-        <input type="submit" value="Search">
-        <br>
+            Name: <input type="text" name="txtSearch">
+            <input type="submit" value="Search">
+            <br>
         </form>
     </div>
     <center>
@@ -46,31 +48,33 @@
         <div class="col-8">
             <table class="table table-bordered">
                 <thead class="thead-light">
-                <tr>
-                    <th>Course's ID</th>
-                    <th>Name of Course</th>
-                    <th>Date</th>
-                    <th>Slot</th>
-                    <th>Trainers</th>
-                    <th>Trainees</th>
-                    <th>Actions</th>
-                </tr>
-                {{#each course}}
-                <tr>
+                    <tr>
+                        <th>Course's ID</th>
+                        <th>Name of Course</th>
+                        <th>Date</th>
+                        <th>Slot</th>
+                        <th>Trainers</th>
+                        <th>Trainees</th>
+                        <th>Actions</th>
+                    </tr>
+                    {{#each course}}
+                    <tr>
 
-                    <td>{{courseId}} </td>
-                    <td>{{courseName}}</td>
-                    <td>{{start}} <strong>To</strong> {{end}} </td>
-                    <td>{{mount}} </td>
-                    <td><a class="btn btn-info" href="/staff/staffTrainerCourse?courseId={{courseId}} "> See more </a> </td>
-                    <td><a class="btn btn-info" href="/staff/staffTraineeCourse?courseId={{courseId}} "> See more </a> </td>
-                    <td>
-                    <a class="btn btn-secondary" href="/staff/editCourse?id={{_id}}">Edit</a>
-                    <a class="btn btn-danger" href="/staff/deleteCourse?id={{_id}}"
-                        onclick="return confirm('Do you want to delete this Course?')">Delete</a>
-                    </td>
-                </tr>
-                {{/each}}
+                        <td>{{courseId}} </td>
+                        <td>{{courseName}}</td>
+                        <td>{{start}} <strong>To</strong> {{end}} </td>
+                        <td>{{mount}} </td>
+                        <td><a class="btn btn-info" href="/staff/staffTrainerCourse?courseId={{courseId}} "> See more
+                            </a> </td>
+                        <td><a class="btn btn-info" href="/staff/staffTraineeCourse?courseId={{courseId}} "> See more
+                            </a> </td>
+                        <td>
+                            <a class="btn btn-secondary" href="/staff/editCourse?id={{_id}}">Edit</a>
+                            <a class="btn btn-danger" href="/staff/deleteCourse?id={{_id}}"
+                                onclick="return confirm('Do you want to delete this Course?')">Delete</a>
+                        </td>
+                    </tr>
+                    {{/each}}
             </table>
         </div>
         <div>

@@ -37,7 +37,12 @@
         <hr>
         <h1>Enter correctly information</h1>
         <form method="post" action="assignTrainerCourse">
-            Trainee's ID: <input type="text" name="txtTrainerId" id="">
+            {{!-- Trainer's ID: <input type="text" name="txtTrainerId" id=""> --}}
+            Trainer's ID: <select name="txtTrainerId" id="">
+                {{#each trainers}}
+                <option>{{userId}} </option>
+                {{/each}}
+            </select>
             <br><br>
             <input type="hidden" name="txtRole" id="" value="Trainer">
             Course's ID: <input type="text" name="courseId" id="" value="{{datas}}" readonly>

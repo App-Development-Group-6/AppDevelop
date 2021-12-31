@@ -15,7 +15,7 @@
 <body>
     <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-             <a href="/" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <strong>FPT Software</strong>
             </a>
             <a a href="/staffIndex" class="navbar-brand d-flex align-items-center">
@@ -30,17 +30,26 @@
             <a href="/staff/about" class="navbar-brand d-flex align-items-center">
                 <strong>About</strong>
             </a>
-          <a class="navbar-brand d-flex align-items-center" href="/logout"><img src="images/account.png" alt="account icon" width="25px"
-                    height="25px">{{dataInfo.role}} - {{dataInfo.userName}} <strong>- Logout</strong></a>        </div>
+            <a class="navbar-brand d-flex align-items-center" href="/logout"><img src="images/account.png"
+                    alt="account icon" width="25px" height="25px">{{dataInfo.role}} - {{dataInfo.userName}} <strong>-
+                    Logout</strong></a>
+        </div>
     </div>
     <center>
         <hr>
         <h1>Enter correctly information</h1>
         <form method="post" action="assignTraineeCourse">
-            Trainee's ID: <input type="text" name="txtTraineeId" id="">
-            <br><br>
+            {{!-- Trainee's ID: <input type="text" name="txtTraineeId" id=""> --}}
+            <div class="container col-2">
+                Trainee's ID:
+                <select class="form-select" name="txtTraineeId" class="form-control" id="">
+                    {{#each trainees}}
+                    <option>{{userId}}</option>
+                    {{/each}}
+                </select>
+            </div>
             <input type="hidden" name="txtRole" id="" value="Trainee">
-            Course's ID: <input type="text" name="courseId" id="" value="{{datas}}" readonly>
+            Course's ID: <br> <input type="text" name="courseId" id="" value="{{datas}}" readonly>
             <br><br>
             <input class="btn btn-success" type="submit" value="Submit">
         </form>

@@ -87,7 +87,8 @@ router.post('/searchCourse', async (req, res) => {
 router.get('/assignTraineeCourse',requireStaff, async (req, res) => {
     const cid = req.query.courseId
     const user = req.session["User"]
-    res.render('assignTraineeCourse', { dataInfo: user, datas: cid })
+    const trainee = await getAllTrainee();
+    res.render('assignTraineeCourse', { dataInfo: user, datas: cid, trainees:trainee })
 })
 
 router.post('/assignTraineeCourse',requireStaff, async (req, res) => {
@@ -96,12 +97,13 @@ router.post('/assignTraineeCourse',requireStaff, async (req, res) => {
     const role = req.body.txtRole
     const courseid = req.body.courseId
     const dbo = await getDB();
-    const name = await dbo.collection("Users").findOne({ "userId": traineeid });
+    const names = await dbo.collection("Users").findOne({ "userId": traineeid });
+    console.log(names)
     const trainee_course = {
         userId: traineeid,
         grade: grade,
-        name: name.fullName,
-        gender: name.gender,
+        name: names.fullName,
+        gender: names.gender,
         role: role,
         courseId: courseid
     }
@@ -142,9 +144,10 @@ router.post('/assignTrainerCourse',requireStaff, async (req, res) => {
 
 router.get('/assignTrainerCourse',requireStaff, async (req, res) => {
     const course = req.query.courseId
-
+    const trainer = await getAllTrainer();
+    console.log(trainer)
     const user = req.session["User"]
-    res.render('assignTrainerCourse', { dataInfo: user, datas: course })
+    res.render('assignTrainerCourse', { dataInfo: user, datas: course, trainers:trainer })
 })
 
 
